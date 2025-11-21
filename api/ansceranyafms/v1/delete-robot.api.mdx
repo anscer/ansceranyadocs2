@@ -1,0 +1,57 @@
+---
+id: delete-robot
+title: "Delete a robot by ID"
+description: "The Delete Robot request allows you to remove a robot from ANSCER FMS."
+sidebar_label: "Delete a robot by ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVt9v2zYQ/leI28sGqLazdUChpwVLCgTbiiJOngJjOEuniK1EMuTRjifofx+Okmt5drsl2JNl8vjdr+8+sgPryCNra25KyKGkhphu7doyZFBSKLx2sgs53NWkrtK+SgbK01OkwAqbxm6D2tmo2CpPrd2QQuWTUeVtqy4/LH+9vlXv/1jOIANPwVkTKEDewY+Lhfwcuxrwh2BKyKCwhsmwGKJzjS5SxPNPQaw7CEVNLcoX7xxBDnb9iQrJwHnJj/Xg609dTowCe20eIYPK+hYZcohRl9Bn0KKJFRYcPfnTA30GgbzG5kNs118xSLkvGTmGcx7JxBbyB3BkymEFC9Ybggy0GT9XfQYSxLIm4tPc+gwKT8hUXvI3kyqR6Q3rluRIdOXLjvQZsOaG9k2Bvpe1t4uL067dG4xcW6//onL2712jZ2ydIHfQUgj4KE4uI9dkeLRVbD+TUcayct5udCnA+wh+Oo3gvfVrXZZkXu2+KCgEoTHXOihPwUZfkNJBVQfsfQRvzzB3f0Jirmw0r67EOaTB8c/nRubGMHmDjVqS35BX195b/0rXZ7Fm6mNDGEix3yl8RG1Ug0x+iEp4go9BSJ14EmCVgUOPLTF5We/AYCvoukw0hxwccp304ClqTyXk7CNlp+N8mKtTRbq5UrZSXNOoN0mB2GvaUKYGuivrRy2BfpVBS1zbg9iJSkgcOcwTQph3uuwhDflmH3r0DeRQM7t8Pu9qG7jPO2c993N0et6JobamPyuaztsyFonPlx9v1IALGWzQa1w3gzYJZmrIKA2NLbBJiyvBrDA2MpqH5XOeDjo78aTEXEnxZ1JCiXrq6N3i2MO7xQugBSyhjgWYAm8ujoE3F/8FeARKrFpJE4roNe9SFy6d/o12IhGQP6ym20uhzFDIqdEXBmFahGzPwec3IlVvkrzs2VgTluST5GlT2XR6lL7jGE/SmGzroFAFW/EWPalgmzjoWI2samrccE22aPCR5NOrqiFi4fCGal00FGbqTrRHinF8s2oZSyxYbTXXifITx2EXmFoRmy+tgIvZYrYYNQCL1PUxfwFfRpe4kE3YHfL5fLvdztCEgvyssO38u/H0fZCLq0UttmE4+8vBLtXN2cAtmomj8cGwfw2sd+rm6p/16w4i9f89MsbGMz3z3DWoTbr+JNFunPeH4ZaWtHJdCleHGXyArltjoHvf9L0sP0XyQsDVYWQTHUsd5LuEvMIm0Dey+v52lLgf1Ms16yu57JltdklKmij/IIPPtBtEtpcXxEhqCXfYkBvO8eTIya1wpJFX179f311D3/8NgDR4mQ==
+sidebar_class_name: "delete api-method"
+info_path: fms-api/v1/anscer-fms-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Delete a robot by ID</h1>
+
+<MethodEndpoint method={"delete"} path={"/robots/{id}"}></MethodEndpoint>
+
+<SecuritySchemes infoPath={"fms-api/v1/anscer-fms-api"}></SecuritySchemes>
+
+
+
+The Delete Robot request allows you to remove a robot from ANSCER FMS.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"id","in":"path","required":true,"schema":{"type":"string"},"description":"The ID of the robot to retrieve, update or delete"}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+Robot deleted
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"_id"} required={false} schemaName={"uuid"} qualifierMessage={undefined} schema={{"type":"string","format":"uuid"}}></SchemaItem><SchemaItem collapsible={false} name={"manufacturer"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"serialNumber"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"robotStatus"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** [`pending`, `active`, `inactive`]"} schema={{"type":"string","enum":["pending","active","inactive"]}}></SchemaItem><SchemaItem collapsible={false} name={"factSheet"} required={false} schemaName={"object"} qualifierMessage={undefined} schema={{"type":"object"}}></SchemaItem><SchemaItem collapsible={false} name={"createdAt"} required={false} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem><SchemaItem collapsible={false} name={"updatedAt"} required={false} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"manufacturer\": \"string\",\n  \"serialNumber\": \"string\",\n  \"robotStatus\": \"pending\",\n  \"factSheet\": {},\n  \"createdAt\": \"2024-12-03T13:25:44.723Z\",\n  \"updatedAt\": \"2024-12-03T13:25:44.723Z\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"401"} value={"401"}><div>
+
+Unauthorized.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Authentication token not provided.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Authentication token not provided.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Forbidden.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"404"} value={"404"}><div>
+
+Resource not found.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Resource not found.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Resource not found.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"500"} value={"500"}><div>
+
+Internal Server Error
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>

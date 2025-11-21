@@ -1,0 +1,8 @@
+{
+  "label": "Dock",
+  "position": 11,
+  "link": {
+    "id": "anscer-anya/dock/index",
+    "type": "doc"
+  }
+}

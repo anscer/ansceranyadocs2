@@ -1,0 +1,3 @@
+# Quick Goal
+
+The "Quick Goal" process is a simplified method to instruct a robot to navigate to a specific known physical location on a map quickly. It involves selecting a point (position) on the map and providing the desired orientation (rotation) for the robot. This single-step process leverages the robot's autonomous navigation capabilities to swiftly guide it to the designated location. It's important to note that these points are not used as reference points for further operations; their sole purpose is to facilitate the rapid, autonomous movement of the robot to a particular spot. "Quick Goal" is a convenient way to efficiently deploy the robot to a specific location without the need for manual control.

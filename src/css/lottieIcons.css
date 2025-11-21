@@ -1,0 +1,83 @@
+[title="lottie-icon"] {
+  display: inline-flex;
+}
+
+.lottie-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+.lottie-title-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  --ifm-h1-font-size: 3rem;
+}
+
+.lottie-title-wrapper h1 {
+  margin: 0;
+  flex-grow: 1;
+}
+
+.tasks-wrapper,
+.tasks-list-wrapper {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.task-chip,
+.task-list {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 5px 15px;
+  border-radius: 50px;
+  height: 40px;
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+.tasks-list-wrapper {
+  flex-direction: column;
+  margin: 2rem;
+}
+.task-chip h5,
+.task-list h5 {
+  font-weight: normal;
+  margin: 0;
+  color: #011f40;
+}
+.task-list .data {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+.task-list .data h5 {
+  font-weight: bold !important;
+}
+.task-list .data svg {
+  fill: orange;
+}
+.task-chip svg,
+.task-list svg {
+  width: 20px;
+  height: 20px;
+}
+.task-list h5 {
+  min-width: 60px;
+}
+.task-list hr {
+  height: 100%;
+  border-right: 1px solid #011f40;
+}
+@media (max-width: 576px) {
+  .lottie-title-wrapper {
+    --ifm-h1-font-size: 2rem;
+  }
+  .tasks-list-wrapper {
+    margin: 2rem 0.25rem;
+  }
+  .task-list h5 {
+    min-width: 50px;
+  }
+}

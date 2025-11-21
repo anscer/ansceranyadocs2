@@ -1,0 +1,49 @@
+---
+id: get-robot-requests-and-success-rate
+title: "Get robot requests and success rate"
+description: "Retrieve the total number of robot requests and the success rate."
+sidebar_label: "Get robot requests and success rate"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vk1v20YQ/SuL6ZUW5aIFAp6qNm5gFA0CycnF0GFEDsVNlrvM7lCyQPC/F7OkLNqSE6doT5aXM2++3rzdDlxDHlk7e1tABlvipds4XtLXlgKHhS1WbZ5TCEtkggQKCrnXjThABktir2lHiitS7BiNsm29Ia9cqbwAKT8iKbRFNAsDnvLINIMEGvRYE5MPkN13YLEmyCAwen47xNQS6mtL/gAJCJ72VEBWogmUQMgrqhGyDvjQDK5e2y0kUDpfI0MGheD0z5O/k2QkjJLvqnQ+5hf/8Wi3pEptmPwM+uQxL7LF/58V2eL7Oa0lamicDRQkzs/zufx5NqDzGUz7DwnkzjJZFldsGqPzSIb0cxD/7rwOt/lMOcvcvFCH9RA9Dv/Imon5QAcpc4xbtq8yi3Q7/94nwJoNHUt7gad9L5a/XOrI71io0UsVrbBW7dDoIpatyHvng9I2tn3sm9q44vD9VtED1o2JWdcUAm4ly08n7BK1oUIoP0SJdC81GVm8SK9k4vgea1I6qCOzBhYezalGbZ7Y38iJqltJlxQORalop7AoPIUgpBk68+ulztxaJm/RqBX5HXl1I1n+y7IvYs3UB0MYSLE/KNyitsrgQOYhLcatdAUWFs2BdR5gLSVy5UZtinLBFWSQ4tEmHRlzNRI6xIhDd1tvIIOKucnStKtc4D7rGue5T7HRaSeG2tn+TNhkCxvvijaPo1t8uFUDLiSwQ69xYwbeC2bsgm1rSd24HE08XAtmia2RXT8dX4q0eL/642ap/vx7NYmkxFwJL2T0IFlPA72ZP43wZv4D0AIWUccGTIF310+Bd9evAR6B4ijXMoS89ZoPcQqLRv9Fh0Urg7tfTz+vRF2GRk6NHtce4yEkR/V9uMKWqyt2X8geJbgiLEZp0LZ00XuUiKc5npUx+ayDQhVcyXv0pIIzbZw7V8iqItMEdXCtqtHiluSnV6UhYrnmdlTp3FCYqbtKh9gMNMbtBxd2SssuYM5qr7mKujIJHA6BqRZReBwFXM/ms/m4eJjHqY/1C/iqbSIXkgm7Q5am+/1+hjbk5Ge5q9OfRu+PQQQnykUGYfD97WQX+9a4wDXaSaB3xJfu72d3x5N2dieh+E/eBSMFmB44bQxqK3yNJXejCNzDowjA48UxyMA6GTfzHrpug4E+etP3cjzc2ELLQgdZ49Od/WI5r38pvJD2Fzo8e9Ps0LRiF1X9xzJ5zevgm3mc3jCnLNYnXYtLmhz3Sjo1uC3ynBqeeJ3dBv1Urt/d3EHf/wOesJNP
+sidebar_class_name: "get api-method"
+info_path: fms-api/v1/anscer-fms-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Get robot requests and success rate</h1>
+
+<MethodEndpoint method={"get"} path={"/analytics/success-rate"}></MethodEndpoint>
+
+<SecuritySchemes infoPath={"fms-api/v1/anscer-fms-api"}></SecuritySchemes>
+
+
+
+Retrieve the total number of robot requests and the success rate.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"startDate","in":"query","required":false,"schema":{"type":"string","format":"date"},"description":"The start date for the date range filter."}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"endDate","in":"query","required":false,"schema":{"type":"string","format":"date"},"description":"The end date for the date range filter."}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+Robot requests and success rate
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"totalRequests"} required={false} schemaName={"number"} qualifierMessage={undefined} schema={{"type":"number"}}></SchemaItem><SchemaItem collapsible={false} name={"successfulRequests"} required={false} schemaName={"number"} qualifierMessage={undefined} schema={{"type":"number"}}></SchemaItem><SchemaItem collapsible={false} name={"successRate"} required={false} schemaName={"number"} qualifierMessage={undefined} schema={{"type":"number"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"totalRequests\": 0,\n  \"successfulRequests\": 0,\n  \"successRate\": 0\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"400"} value={"400"}><div>
+
+Bad Request due to validation errors in the request body
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Validation failed.\",\n  \"errors\": [\n    {\n      \"field\": \"name\",\n      \"message\": \"Name is required.\"\n    },\n    {\n      \"field\": \"email\",\n      \"message\": \"Email must be a valid email address.\"\n    }\n  ]\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Validation failed.\",\n  \"errors\": [\n    {\n      \"field\": \"name\",\n      \"message\": \"Name is required.\"\n    },\n    {\n      \"field\": \"email\",\n      \"message\": \"Email must be a valid email address.\"\n    }\n  ]\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"500"} value={"500"}><div>
+
+Internal Server Error
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>

@@ -1,0 +1,59 @@
+.openapi-tabs__code-item--python {
+  &::after {
+    background-image: url("/static/img/icons/python-original.svg") !important;
+  }
+}
+
+.openapi-tabs__code-item--go {
+  &::after {
+    background-image: url("/static/img/icons/go-original-wordmark.svg") !important;
+  }
+}
+
+.openapi-tabs__code-item--javascript {
+  &::after {
+    background-image: url("/static/img/icons/javascript-original.svg") !important;
+  }
+}
+
+.openapi-tabs__code-item--bash {
+  &::after {
+    background-image: url("/static/img/icons/bash-original.svg") !important;
+  }
+}
+
+.openapi-tabs__code-item--ruby {
+  &::after {
+    background-image: url("/static/img/icons/ruby-plain.svg") !important;
+  }
+}
+
+.openapi-tabs__code-item--csharp {
+  &::after {
+    background-image: url("/static/img/icons/csharp-original.svg") !important;
+  }
+}
+
+.openapi-tabs__code-item--nodejs {
+  &::after {
+    background-image: url("/static/img/icons/nodejs-original.svg") !important;
+  }
+}
+
+.openapi-tabs__code-item--php {
+  &::after {
+    background-image: url("/static/img/icons/php-original.svg") !important;
+  }
+}
+
+.openapi-tabs__code-item--java {
+  &::after {
+    background-image: url("/static/img/icons/java-original.svg") !important;
+  }
+}
+
+.openapi-tabs__code-item--powershell {
+  &::after {
+    background-image: url("/static/img/icons/windows8-original.svg") !important;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "label": "Waypoints",
+  "position": 10,
+  "link": {
+    "id": "anscer-anya/waypoints/index",
+    "type": "doc"
+  }
+}

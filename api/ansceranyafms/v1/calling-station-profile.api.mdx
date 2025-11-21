@@ -1,0 +1,53 @@
+---
+id: calling-station-profile
+title: "Get Calling Station Profile"
+description: "The Get Calling Station Profile request allows authenticated calling stations to retrieve their profile information."
+sidebar_label: "Get Calling Station Profile"
+hide_title: true
+hide_table_of_contents: true
+api: eJzFVt9v2zgM/lcE3qsbp7crMPjpiqEbivuBYumeiuCg2EysVZZUkU6aM/y/Hyi7i9sEW7uXe4ojkR8p8uMndeADRs3Gu+sKCii1tcZtFpyWbqJfG4uQQYVURhNkEQq4rVF9QlYfBms1mqvRXkV8aJFYaWv9jpRuuUbHptSMlRpDKBqcSLFXETka3KLiGk1UYcQxbu1jk8xmkEFECt4REhQd/Dqfy8/zxF4mFL4doPSO0bG46BCs5GK8y7+S+HVAZY2Nli/eB4QC/OorlgwZhCgVYjNE/cdUEyPiaNwGMhjShALa1lTQZ+B0g6cMG+P+RLfhGop3GTT68enfxbzPoCWMr/C8OPa0fjgQTVx1jHoPGRjGho4h+z6TUkS/1fYzPrQm4vRsK+8taieHofv2bbDW6xNlknjWaDqussQYOnab1o9Pj65toLiDHa6kJ/WeTKktLHthRSLbjzyDKe/bIFSOPvj1WraawPuEQewjXr+utWVE4fElf9e60oxnbBoUlzZUb3PpM2DDFg+UHhkNfS+bv83Pj8n/xcmg+Wj+xWr2Y8rjo26CTTVrkEhvJNrlYVRlftjfo1POs0zS1lQC/JTBu+MMPvq4MlWF7qfDlyVSUgSuDamI5NtYojKk1gfsIYOLUwJw7VhGyKoFxi1GdRWjjz+ZzEmsmbqxqAkVx73SG22cspoxDllJ3/SGhG8vpIhgmUGDXHuR2Q0madEyv5CPinj2pIi59DFvRLYohRbADtpooYCaORR53tWeuC+64CP3uQ4m78TQeNeflOsQfdWWqamXN9dqwIUMtjoavbKDuglmKsc4M6IqNi0uBXOtWytEPSyfinT59+LD1Wf18a/FJJIScyXaNpOBkKyngd7Pn0d4P38DtIAl1LEAU+Dt+XPg7flrgEeg1NOlNKFso+F96sJlMH/gXuYEirvldHshd8hQyKnRQTjTIjxdDvB4Jn0+SzMmeirJ1KgrjEkA5PJL3qMQPM/x6BiTbUNKK/Jr3umIirxth2GuNasabSC1961qtNMblM+o1haRlV+rLdamtEgzdSsDKMUYL3FxYa+MDIUuWe0M13JdT2tHe2JsZPi/tQLOZ/PZfJxAXaauj+cX8EUbEheyCbupyPPdbjfTjkqMs9I3+S+j9xdKsq2N2NLg+/vBLtUteOJGu0mg7zxVXpaxOyjF//XKGdnC+Mh5sNqkKzhVpxsV4w5eKgZkIOHlmYBC+GGQ76DrVprwS7R9L8sPLUZh8fIw94nE2RPvhOD3uB+VOHASCNsO7H0hm/1U0D5d3ULf/we/to1S
+sidebar_class_name: "get api-method"
+info_path: fms-api/v1/anscer-fms-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Get Calling Station Profile</h1>
+
+<MethodEndpoint method={"get"} path={"/calling-stations/auth/me"}></MethodEndpoint>
+
+<SecuritySchemes infoPath={"fms-api/v1/anscer-fms-api"}></SecuritySchemes>
+
+
+
+The Get Calling Station Profile request allows authenticated calling stations to retrieve their profile information.
+
+## Request
+
+<div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+Calling Station profile
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"_id"} required={false} schemaName={"uuid"} qualifierMessage={undefined} schema={{"type":"string","format":"uuid"}}></SchemaItem><SchemaItem collapsible={false} name={"name"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** `>= 3 characters` and `<= 50 characters`"} schema={{"type":"string","minLength":3,"maxLength":50}}></SchemaItem><SchemaItem collapsible={false} name={"username"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** `>= 5 characters` and `<= 50 characters`"} schema={{"type":"string","minLength":5,"maxLength":50}}></SchemaItem><SchemaItem collapsible={false} name={"locations"} required={false} schemaName={"string[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"approvalRequired"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"sku"} required={false} schemaName={"string[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"load"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"alias"} required={false} schemaName={"object"} qualifierMessage={undefined} schema={{"type":"object"}}></SchemaItem><SchemaItem collapsible={false} name={"stationType"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** [`web`, `physical`]"} schema={{"type":"string","enum":["web","physical"]}}></SchemaItem><SchemaItem collapsible={false} name={"requestType"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** [`pickup`, `dropoff`, `empty`]"} schema={{"type":"string","enum":["pickup","dropoff","empty"]}}></SchemaItem><SchemaItem collapsible={false} name={"storeId"} required={false} schemaName={"uuid"} qualifierMessage={undefined} schema={{"type":"string","format":"uuid"}}></SchemaItem><SchemaItem collapsible={false} name={"createdAt"} required={false} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem><SchemaItem collapsible={false} name={"updatedAt"} required={false} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"name\": \"string\",\n  \"username\": \"string\",\n  \"locations\": [\n    \"string\"\n  ],\n  \"approvalRequired\": true,\n  \"sku\": [\n    \"string\"\n  ],\n  \"load\": \"string\",\n  \"alias\": {},\n  \"stationType\": \"web\",\n  \"requestType\": \"pickup\",\n  \"storeId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"createdAt\": \"2024-12-03T13:25:44.744Z\",\n  \"updatedAt\": \"2024-12-03T13:25:44.744Z\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"401"} value={"401"}><div>
+
+Unauthorized.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Authentication token not provided.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Authentication token not provided.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Forbidden.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"500"} value={"500"}><div>
+
+Internal Server Error
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>

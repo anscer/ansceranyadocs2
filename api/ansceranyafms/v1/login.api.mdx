@@ -1,0 +1,57 @@
+---
+id: login
+title: "Login"
+description: "The Login request allows users to authenticate themselves with ANSCER FMS by providing their email address and password."
+sidebar_label: "Login"
+hide_title: true
+hide_table_of_contents: true
+api: eJzFVt9v2zYQ/lcOt1fFdtqlKPTUtEiBbNkW5Mf2kBrDWTpLbClSJSk7hqD/fThKtuXEa7dgwPISi+J9d/q+u49s0dbsKChrLnNMUdtCGUwwZ585Vcs6pnhXMlzJG3D8tWEfgLS2aw+NZ+chWKAmlGyCyigwhJIrz3rFHtYqlHD+6+2Hixv4+MstLDZQO7tSuTKF7FMOuCKlgfLcsfdAJoeavF9bl08wQc9Z41TYYPowT3BI/97mG0zb+Kgc55gG13CCmTWBTZBXVNdaqlHWTD97+YoWfVZyRfIrbGrGFO3iM2cBkxHQA8Z6MMFtFThPsHZCU1DsJbrfsYfxwSlTYIKVMldsilBiepZgRY/bp1dnZwkurasoYDrEd6MU38Z68xSr6xIMKmgJiLpg18maY19b4/sqX81m8u9QyXvPDrQtCs4hCl0y5exiwOOJqHgS7Bc2zyN/+uMO+lfJcyKHqmMRLxbhkOQ/1VFadiQ2jcqFQ0MVf4e/1wf8nc265L+T0Fl9JL3os6XxaYa/o/WJqAXnl0bkGrT98Zic7ymHm2Ek84ZlElekVR4pB3bOOg/KyKTtRnchw/NdmfiRqrr/tIq9p0LK+n2PvSSlOU5onwXThxaXinW+YycZRV7EIa8ayc9AfZWHoz/BLtlD7EZjjHI9LO6A3kBWkqMsiA1Z6WxTsJtgN9+S9vo5aR+tW6g8ZzN5IQ3nWSZWFSyEUnlw7G3jMgblYbnH7is4OybbpQnsDGm4ZbdiBxdC4QuLOYo1gWvN5BmC2wAVpAxoCpGZvqxAhUiG53vfltLmwnYobVTA+jiVJN2PU/GG6MeSpZe7cRpTLEOo0+m0La0PXdrW1oVuSrWatrJRWdMdPU9qZ/Mmi710fn0JPS4muCKnaKF7ExDM+OWmqaRcbTPScXEumEtqdIin1nb5WKbR8bPPBLIdxDwm0YmtO0j0dnaY4e3sX0ALWEQdCBgDr04PgVen/wR4AIryzfeH4q14ac/Uea1+5o3IOfIciou4NclDh09QSbb+AIjuI312sz9hL/btNtglynn/bmjDSWar8TE5Nj9lljbWMfjZ4ec8++LRa+WBwNtlWJNj8FY3sUVCSQFK1rWHjW2gIkMFy08HS80cwC5hxaXKNPsJ3MlYCm/DNUVCggUlo0JZ6G8l4ZBmv/GBK7GEnWp4OplNZsNcUhYbZGBSwG+bOrZNMhoEn06n6/V6QsZn7ISi6Q9D9L3H3bmDvo99t98XFZCZq8iMEl0du5C1e6f4P+9mQ5cFfgzTWpNcQwYu2sE2HjDaxjwZJvkB23ZBnu+d7jpZ/tqwG+5228GXp257MYk+84U3mOKH/pNP7iSrbNdN3+NPjFJOkT5CfLoO39w7Nrzr327vMMHFcLmsbC4xjtZyQaQ1pvgJPyEmaKMMcezieouaTNH0ftzjyt9fzmfk3w==
+sidebar_class_name: "post api-method"
+info_path: fms-api/v1/anscer-fms-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Login</h1>
+
+<MethodEndpoint method={"post"} path={"/auth"}></MethodEndpoint>
+
+<SecuritySchemes infoPath={"fms-api/v1/anscer-fms-api"}></SecuritySchemes>
+
+
+
+The Login request allows users to authenticate themselves with ANSCER FMS by providing their email address and password.
+
+## Request
+
+<MimeTabs className={"openapi-tabs__mime"}><TabItem label={"application/json"} value={"application/json-schema"}><details style={{}} className={"openapi-markdown__details mime"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-mime"}><h3 className={"openapi-markdown__details-summary-header-body"}>Body</h3><strong className={"openapi-schema__required"}>required</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"email"} required={true} schemaName={"email"} qualifierMessage={"**Possible values:** `>= 5 characters` and `<= 255 characters`"} schema={{"type":"string","minLength":5,"maxLength":255,"format":"email"}}></SchemaItem><SchemaItem collapsible={false} name={"password"} required={true} schemaName={"string"} qualifierMessage={"**Possible values:** `>= 6 characters` and `<= 255 characters`"} schema={{"type":"string","minLength":6,"maxLength":255}}></SchemaItem></ul></details></TabItem></MimeTabs><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+User logged in
+
+</div><details style={{"textAlign":"left","marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collaposed={true} open={false}><summary style={{}}><strong>Response Headers</strong></summary><ul style={{"marginLeft":"1rem"}}><li className={"schemaItem"}><summary style={{}}><strong>x-auth-token</strong><span style={{"opacity":"0.6"}}> string</span></summary><div><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+JWT token
+
+</div></div></li></ul></details><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"_id"} required={false} schemaName={"uuid"} qualifierMessage={undefined} schema={{"type":"string","format":"uuid"}}></SchemaItem><SchemaItem collapsible={false} name={"name"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** `>= 3 characters` and `<= 50 characters`"} schema={{"type":"string","minLength":3,"maxLength":50}}></SchemaItem><SchemaItem collapsible={false} name={"email"} required={false} schemaName={"email"} qualifierMessage={"**Possible values:** `>= 5 characters` and `<= 255 characters`"} schema={{"type":"string","minLength":5,"maxLength":255,"format":"email"}}></SchemaItem><SchemaItem collapsible={false} name={"role"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"token"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string","description":"JWT token"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"name\": \"string\",\n  \"email\": \"user@example.com\",\n  \"role\": \"string\",\n  \"token\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"400"} value={"400"}><div>
+
+Bad Request due to validation errors in the request body
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Validation failed.\",\n  \"errors\": [\n    {\n      \"field\": \"email\",\n      \"message\": \"Email must be a valid email address.\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Password must be 6 characters or longer.\"\n    }\n  ]\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Validation failed.\",\n  \"errors\": [\n    {\n      \"field\": \"email\",\n      \"message\": \"Email must be a valid email address.\"\n    },\n    {\n      \"field\": \"password\",\n      \"message\": \"Password must be 6 characters or longer.\"\n    }\n  ]\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Forbidden.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"500"} value={"500"}><div>
+
+Internal Server Error
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>

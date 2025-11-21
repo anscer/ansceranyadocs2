@@ -1,0 +1,57 @@
+---
+id: delete-calling-station
+title: "Delete a calling station by ID"
+description: "The Delete Calling Station request allows you to remove a calling station from ANSCER FMS."
+sidebar_label: "Delete a calling station by ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vt9v2zYQ/leI28sGKLazNkChpwVNChjrhiJOngJjoKWzxYYiGfJkRxP0vxdHybMceW2SYU+WybvvfvC7j2zAOvSSlDXzHFLIUSPhR6m1MpsFxQ1IIMeQeeXivxRuCxRX0VD0lqI3FR4fKwwkpNZ2F0RtK0FWeCztFoUUWW8eevO1t6W4/HPx8fpGfPpjMYEEPAZnTcAAaQO/zmb8cxz+ecwu5xwSyKwhNMQu0jmtsmgw/RrYr4GQFVhK/qLaIaRgV18xI0jAeW4DqS7qXyofGAXyymwggbX1pSRIoapUDm0CRpZ4yrBU5jOaDRWQvkuglE/7fxezNoEqoH+B58XYU9uuoDBwld7LGhJQhGUYQ7Ztwq3wdiv1DT5WyuOwtpW1GqXhYsJD9TpYbeWJNnE8rWQYd5ljdCd2G9fH1aOpSkjvYYcrPpOiDiqTGpYtsyLy6keeTmUPlWPCeuvses1bpaM6YgSyHucvO9rMoyTML+m71rkkPCNVIrtULn+dS5sAKdJ4oPR+4NqWN9/PzsfkvzOyosJ69Tfmkx9THp9k6XTsWYkhyA1Hu6yoQEO9rSD7gEYYS4J5onIG3mfwbpzBJ+tXKs/RvDl8lmEIrAtUqCA8Blv5DIUKYn3A3mfwfpzBzd6Dc17byry5E6eQusAXp5RnbohnV4sF+i16ce299W8MfRJrIr5olAEF+VrIjVRGaEnou6yYMHITmOjPNDDAMgEnvSyR0LNF06sTKBZGxdk7SQV0o9TJAPkKk7EqHiZ5LPvzK2HXggocSXmUefIKt5iIbhaE9b04Q7tMoEQq7OGS4RHnjFKY9lhnPVaYNipvIYEQW9OVU3kNKRRELp1Om8IGatPGWU/tVDo1bdhQWdOevK2ct3mVxTwvv8xFhwsJbKVXcqU72WfMeFy9mLDc6ri4ZMy1rDRP8GH5VKTDZTaIJNhc8IFMuK2c9TDQh9lxhA+zV0AzWETtGzAE3p4fA2/PXwLcA0XOLfkQssorquMpXDr1O9YsIJDeL4fbC6ZR18ih0eFGiYuwvzXh6YyF7CyKz56hBcocfVRGZdY2evcKeZzjqIzBtgpCimDXtJMeRbC66vhZSBIFate9Skpp5Ab504u1RiTm9RYLlWkME3HLysTNOH7IKB5amZHYKSriGAwChzoQlixF/xwFnE9mk1mvEDKLp97Xz+CLykUuJAN2h3Q63e12E2lChn6S2XL6U+99F+J9JhXbhs73t4Nd7JuzgUppBoH6l9r48bWqxfzqeSebg5j9v++8nhaETzR1Wqr4CIltaHpduIfnugAJpCpnTnezeg9Ns5IB77xuW15+rNAzUZeH0Y60zVXg7xzStdQBv1Pzz/tX0i/iv+jdv9S3nwVTR/HRFf+DBB6w7qS65YdKPwaceLfBN6ajgcvoljnS16vrz9e319C23wBFQxCI
+sidebar_class_name: "delete api-method"
+info_path: fms-api/v1/anscer-fms-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Delete a calling station by ID</h1>
+
+<MethodEndpoint method={"delete"} path={"/calling-stations/{id}"}></MethodEndpoint>
+
+<SecuritySchemes infoPath={"fms-api/v1/anscer-fms-api"}></SecuritySchemes>
+
+
+
+The Delete Calling Station request allows you to remove a calling station from ANSCER FMS.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"id","in":"path","required":true,"schema":{"type":"string"},"description":"The ID of the calling station to retrieve, update or delete"}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+Calling Station deleted
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"_id"} required={false} schemaName={"uuid"} qualifierMessage={undefined} schema={{"type":"string","format":"uuid"}}></SchemaItem><SchemaItem collapsible={false} name={"name"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** `>= 3 characters` and `<= 50 characters`"} schema={{"type":"string","minLength":3,"maxLength":50}}></SchemaItem><SchemaItem collapsible={false} name={"username"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** `>= 5 characters` and `<= 50 characters`"} schema={{"type":"string","minLength":5,"maxLength":50}}></SchemaItem><SchemaItem collapsible={false} name={"locations"} required={false} schemaName={"string[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"approvalRequired"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"sku"} required={false} schemaName={"string[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"load"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"alias"} required={false} schemaName={"object"} qualifierMessage={undefined} schema={{"type":"object"}}></SchemaItem><SchemaItem collapsible={false} name={"stationType"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** [`web`, `physical`]"} schema={{"type":"string","enum":["web","physical"]}}></SchemaItem><SchemaItem collapsible={false} name={"requestType"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** [`pickup`, `dropoff`, `empty`]"} schema={{"type":"string","enum":["pickup","dropoff","empty"]}}></SchemaItem><SchemaItem collapsible={false} name={"storeId"} required={false} schemaName={"uuid"} qualifierMessage={undefined} schema={{"type":"string","format":"uuid"}}></SchemaItem><SchemaItem collapsible={false} name={"createdAt"} required={false} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem><SchemaItem collapsible={false} name={"updatedAt"} required={false} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"name\": \"string\",\n  \"username\": \"string\",\n  \"locations\": [\n    \"string\"\n  ],\n  \"approvalRequired\": true,\n  \"sku\": [\n    \"string\"\n  ],\n  \"load\": \"string\",\n  \"alias\": {},\n  \"stationType\": \"web\",\n  \"requestType\": \"pickup\",\n  \"storeId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"createdAt\": \"2024-12-03T13:25:44.779Z\",\n  \"updatedAt\": \"2024-12-03T13:25:44.779Z\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"401"} value={"401"}><div>
+
+Unauthorized.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Authentication token not provided.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Authentication token not provided.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Forbidden.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"404"} value={"404"}><div>
+
+Resource not found.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Resource not found.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Resource not found.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"500"} value={"500"}><div>
+
+Internal Server Error
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>

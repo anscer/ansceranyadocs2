@@ -1,0 +1,61 @@
+---
+id: create-robot
+title: "Create a new robot"
+description: "The Create Robot request allows you to create a new robot in ANSCER FMS."
+sidebar_label: "Create a new robot"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVttuGzcQ/RVi+rqW5F6AdJ+qGA5gFHUDy+6LIxSj5UjLhEtueJGsLvbfgyHX1soy0sapX7wih3M955Ad2JYcBmXNlYQSKkcY6MaubIACJPnKqZZ3oYTbmsRF2hfJQDj6HMkHgVrbnRd7G0WwIrsQKAzthEuGyoj59eLi8ka8+2MxgQKGk2+t3EPZpZ/KkYQyuEgFVNYEMoG3sG21qlKC04+e8+jAVzU1yF9h3xKUYFcfqQqD3+zoHho0cY1ViI4cFODJKdTXsVmRg2UBrePKgyLPjo6MD459cMpsoH92/NSgLyCooHnpmna5f33Py458a43PYX6cnfO/477mZua2SfiO6o9L+lvJ00QLWFvXYIASYlSSK/ve0gtIQ14EDNG/FJFMbHggLRmZV7AKaktQgDLD57IvgJNY1EThtLa+GJAp5+GrRUkMdBZUQ3wktvLbjoymOB7hz7PZ6dTeohQ3AwFkJEb+FrWSaViCnLPOM/BDTU9EWTHe/3XA9IBNy0l00JD3uOF8/jr4XqPSJJlGOQqU9x2sFWkmsMGGG3s4eI0NCeXFIzUm0BcHc2pQ6SP7S14RTeR0mcWpKJHsBErpyPsJ9MvHzryA5zuDMdTWqX9ylq8pdx5DTSYMtiLYT2SEsUG0zm6VTGUMGfx0msE761ZKSjKvDl9V5D3PNNSpd95GV6U+rg++HzP49TSD+aB8OxXqBIGN2pIRmUrCJC4J1I5Q7gU9KB/8q3N9Taic+i8vAfvKBHIGtViQ25ITlwyyV+b2oq+JeK8JPYng9gI3qIzQGMjlrJiDuGFQZw56FuuGQm0Zr631Sekw1FDC1GWLpFFbGqgQnYYS6hDacjrtautDX3atdaGfYqumHRsqa/oXL7jWWRmrBLr5+yuR/UIBW3QKVzpLK/tMNQ/Kpm2FOi0u2ecao2ZlOSy/FOlwI44iCTYXTGLmKXDW40BvZscR3sy+wTU7S16HBowdb8+PHW/P/4vjwVEa3JKHUEWnwj5NYd6q32nPPIbyfjneXvAFlhs5NnqSaEyLUGQtK+HhjPXkLGlAujN4uoSSXFJsBuDN4T1xOcLh0c12kP7jC210kSmztimR4RI4LvekI6Nt5QUKb9dhh46Etzpm3aoxiJp0m19HDRrcEH86sdZEQdi12FKtKk1+Im5Za7ivxw8qxSTCasTwUWC/94Ea1o6nqcL5ZDaZDYzFKgFoaCU7X8Q2waoYEcWX0+lut5ug8RW5SWWb6Q/D6TumV74mSvD57G8HuzQCZmWDZhTo4uQR+Lx73UFQ/s+X5YChQA9h2mpUJj0EuNBuUI17cE+6kol8D123Qk93Tvc9L3+O5BjFywPvE4iLR9wxwD/RngvNRZzdclw21zFj+JlC8qWbT/Dd0oav2o4V7/2fi1soYDU8lRsr+YzDHT93cQclfIAPAAXY1NhEq7TegUaziVmIs1/++wIqOR1r
+sidebar_class_name: "post api-method"
+info_path: fms-api/v1/anscer-fms-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Create a new robot</h1>
+
+<MethodEndpoint method={"post"} path={"/robots"}></MethodEndpoint>
+
+<SecuritySchemes infoPath={"fms-api/v1/anscer-fms-api"}></SecuritySchemes>
+
+
+
+The Create Robot request allows you to create a new robot in ANSCER FMS.
+
+## Request
+
+<MimeTabs className={"openapi-tabs__mime"}><TabItem label={"application/json"} value={"application/json-schema"}><details style={{}} className={"openapi-markdown__details mime"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-mime"}><h3 className={"openapi-markdown__details-summary-header-body"}>Body</h3><strong className={"openapi-schema__required"}>required</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"manufacturer"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"serialNumber"} required={true} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem></ul></details></TabItem></MimeTabs><div><div><ApiTabs><TabItem label={"201"} value={"201"}><div>
+
+Robot created
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"_id"} required={false} schemaName={"uuid"} qualifierMessage={undefined} schema={{"type":"string","format":"uuid"}}></SchemaItem><SchemaItem collapsible={false} name={"manufacturer"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"serialNumber"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"robotStatus"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** [`pending`, `active`, `inactive`]"} schema={{"type":"string","enum":["pending","active","inactive"]}}></SchemaItem><SchemaItem collapsible={false} name={"factSheet"} required={false} schemaName={"object"} qualifierMessage={undefined} schema={{"type":"object"}}></SchemaItem><SchemaItem collapsible={false} name={"createdAt"} required={false} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem><SchemaItem collapsible={false} name={"updatedAt"} required={false} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"manufacturer\": \"string\",\n  \"serialNumber\": \"string\",\n  \"robotStatus\": \"pending\",\n  \"factSheet\": {},\n  \"createdAt\": \"2024-12-03T13:25:44.699Z\",\n  \"updatedAt\": \"2024-12-03T13:25:44.699Z\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"400"} value={"400"}><div>
+
+Bad Request due to validation errors in the request body
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Validation failed.\",\n  \"errors\": [\n    {\n      \"field\": \"name\",\n      \"message\": \"Name is required.\"\n    },\n    {\n      \"field\": \"email\",\n      \"message\": \"Email must be a valid email address.\"\n    }\n  ]\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Validation failed.\",\n  \"errors\": [\n    {\n      \"field\": \"name\",\n      \"message\": \"Name is required.\"\n    },\n    {\n      \"field\": \"email\",\n      \"message\": \"Email must be a valid email address.\"\n    }\n  ]\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"401"} value={"401"}><div>
+
+Unauthorized.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Authentication token not provided.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Authentication token not provided.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Forbidden.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"409"} value={"409"}><div>
+
+A robot with the given serial number already exists.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"A robot with the given serial number already exists.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"A robot with the given serial number already exists.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"500"} value={"500"}><div>
+
+Internal Server Error
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>

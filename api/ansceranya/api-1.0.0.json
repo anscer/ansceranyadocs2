@@ -1,0 +1,2858 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "ANSCER ANYA API",
+		"description": "ANSCER ANYA is a software solution designed to manage and automate material transport in warehouses and industries for ANSCER ROBOTS. This is designed to provide organizations/individuals with full visibility and control over their ANSCER ROBOTS, enabling them to streamline their material transport operations, reduce manual labor, and improve overall efficiency. The solution is highly scalable and customizable, allowing organizations to tailor it to their specific needs. With ANSCER ANYA, organizations can optimize their material transport processes and maximize the productivity of their ANSCER ROBOTS.",
+		"version": "1.0.0",
+		"contact": {
+			"name": "API Support",
+			"url": "https://www.anscer.com/#contactUs",
+			"email": "support@anscer.com"
+		}
+	},
+	"servers": [
+		{
+			"url": "http://{host}:{port}/api/{version}",
+			"description": "The production API server",
+			"variables": {
+				"host": {
+					"enum": ["localhost"],
+					"default": "localhost",
+					"description": "The ANSCER ANYA API server host name."
+				},
+				"port": {
+					"enum": ["80", "443", "5002"],
+					"default": "80",
+					"description": "The ANSCER ANYA API server port."
+				},
+				"version": {
+					"enum": ["v1"],
+					"default": "v1",
+					"description": "The ANSCER ANYA API version."
+				}
+			}
+		}
+	],
+	"security": [
+		{
+			"ApiKeyAuth": []
+		}
+	],
+	"paths": {
+		"/": {
+			"get": {
+				"security": [],
+				"operationId": "apiHome",
+				"summary": "API Home",
+				"description": "Home Route of ANSCER ANYA API",
+				"responses": {
+					"200": {
+						"description": "Welcome to Anscer Robotics ANYA - AMR's Server."
+					}
+				},
+				"tags": ["Home"]
+			}
+		},
+		"/auth": {
+			"summary": "Authentication",
+			"post": {
+				"operationId": "login",
+				"summary": "Login",
+				"description": "The Login request allows users to authenticate themselves with ANSCER ANYA by providing their email address and password. This request does not require any additional parameters and can be accessed by any unauthenticated user.\n\nTo use this request, you need to provide your email address and password to ANSCER ANYA and send the request to the API endpoint. Once the request is sent, ANSCER ANYA will verify your credentials and return a JSON Web Token (JWT) that can be used to authenticate subsequent requests.",
+				"security": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Login"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "User logged in",
+						"headers": {
+							"x-auth-token": {
+								"description": "JWT token",
+								"schema": {
+									"type": "string"
+								}
+							}
+						},
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/LoggedInUser"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadLoginRequest"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Authentication"]
+			}
+		},
+		"/users": {
+			"summary": "Users",
+			"get": {
+				"operationId": "getAllUsers",
+				"summary": "Get a list of users",
+				"description": "The Get All Users request allows you to retrieve a list of all users registered in ANSCER ANYA. This request can be accessed by authenticated admin users only and does not require any additional parameters.",
+				"responses": {
+					"200": {
+						"description": "A list of users",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/User"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Users"]
+			},
+			"post": {
+				"operationId": "createUser",
+				"description": "The Create User request allows you to create a new user account for ANSCER ANYA. This request takes in a JSON object in the request body that includes the user's name, email, password, and role.",
+				"summary": "Create a new user",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewUser"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "User created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"409": {
+						"$ref": "#/components/responses/EmailAlreadyRegistered"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Users"]
+			}
+		},
+		"/users/me": {
+			"get": {
+				"operationId": "getCurrentUser",
+				"summary": "Get current user",
+				"description": "The Get current user request allows you to retrieve information about the currently logged in user in ANSCER ANYA. This request does not require any additional parameters, and will return a JSON object containing information about the user, including their name, email, and role.",
+				"responses": {
+					"200": {
+						"description": "User details",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Users"]
+			}
+		},
+		"/users/reset-password/{userId}": {
+			"parameters": [
+				{
+					"name": "userId",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the user to reset password."
+				}
+			],
+			"post": {
+				"operationId": "resetPassword",
+				"description": "Reset Password allows an authorized user to reset the password for a specific user in ANSCER ANYA. This request takes the user's unique ID as a parameter and requires the authorization password (authPassword) of the authorized user who has access to reset passwords. A new password (newPassword) for the target user is provided in the request body, and this request resets the user's password.",
+				"summary": "Reset Password",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ResetUser"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Password reset successfully.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Users"]
+			}
+		},
+		"/users/{userId}": {
+			"parameters": [
+				{
+					"name": "userId",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the user to retrieve, update or delete"
+				}
+			],
+			"get": {
+				"operationId": "getUserById",
+				"summary": "Get a user by ID",
+				"description": "The Get User request allows you to retrieve information about a specific user in ANSCER ANYA. This request takes in the user's unique ID as a parameter, and returns a JSON object containing information about the user, including their name, email, and role.",
+				"responses": {
+					"200": {
+						"description": "User details",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Users"]
+			},
+			"put": {
+				"operationId": "updateUserById",
+				"summary": "Update a user by ID",
+				"description": "This request is useful for modifying user information when changes need to be made to a user's account or access level. Additionally, the \"isActive\" key can be used to temporarily suspend or disable a user's account, without permanently deleting it.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateUser"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "User updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Users"]
+			},
+			"delete": {
+				"operationId": "deleteUserById",
+				"summary": "Delete a user by ID",
+				"description": "The Remove User request allows you to remove a user from ANSCER ANYA. This request takes in the user's unique ID as a parameter, and will permanently delete the user's account and all associated data from the ANSCER ANYA database.",
+				"responses": {
+					"200": {
+						"description": "User deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Users"]
+			}
+		},
+		"/maps": {
+			"summary": "Maps",
+			"get": {
+				"operationId": "getAllMaps",
+				"summary": "Get a list of maps",
+				"description": "The Get All Maps request allows users to retrieve a list of all maps that are currently available in ANSCER ROBOT.",
+				"responses": {
+					"200": {
+						"description": "A list of maps",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/Map"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Maps"]
+			},
+			"post": {
+				"operationId": "createMap",
+				"description": "The Create Map request allows authenticated users to create a new map in ANSCER ROBOT. This request can only be accessed by users with the appropriate permissions, such as an administrator.\n\nIt's important to note that creating a new map into a robot may take some time, depending on the size of the map and the speed of the robot's network connection.",
+				"summary": "Create a new map",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewMap"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "User created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Map"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidationObj"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"409": {
+						"$ref": "#/components/responses/MapNameConflict"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Maps"]
+			}
+		},
+		"/maps/{mapId}": {
+			"parameters": [
+				{
+					"name": "mapId",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the map to retrieve, update or delete"
+				}
+			],
+			"get": {
+				"operationId": "getMapById",
+				"summary": "Get a map by ID",
+				"description": "The Get Map request allows authenticated users to retrieve detailed information about a specific map. This request can be accessed by any authenticated user with the appropriate permissions.",
+				"responses": {
+					"200": {
+						"description": "Map details",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Map"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Maps"]
+			},
+			"put": {
+				"deprecated": true,
+				"operationId": "updateMapById",
+				"summary": "Update a map by ID",
+				"description": "The Update Map request allows authenticated users to update an existing map in ANSCER ROBOT. This request can only be accessed by admin user.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewMap"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Map updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Map"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidationObj"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"409": {
+						"$ref": "#/components/responses/MapNameConflict"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Maps"]
+			},
+			"delete": {
+				"operationId": "deleteMapById",
+				"summary": "Delete a map by ID",
+				"description": "This request is used to delete a map from the ANSCER ROBOT system. Only an admin user is authorized to delete a map. The {mapId} parameter in the endpoint URL specifies the ID of the map that is to be deleted.\n\n**Warning: This operation will permanently delete the map and all associated resources such as waypoints, zones, and missions. Use with caution.**",
+				"responses": {
+					"200": {
+						"description": "Map deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Map"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Maps"]
+			}
+		},
+		"/maps/load/{mapId}": {
+			"parameters": [
+				{
+					"name": "mapId",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the map to load."
+				}
+			],
+			"post": {
+				"operationId": "loadMap",
+				"description": "The Load Map in Robot request allows authenticated users to load a map into an ANSCER ROBOT. This request can only be accessed by users with the appropriate permissions, such as an administrator or developer.\n\nTo use this request, you need to provide the map's ID in the request URL.\n\nOnce ANSCER ANYA receives the request, it will verify that the specified map exist in the system and are compatible to load. If everything checks out, desired map will be loaded in the robot, which will then begin using it for navigation and other tasks.\n\nIt's important to note that loading a map into a robot may take some time, depending on the size of the map and the speed of the robot's network connection.\n\nThis request is useful for loading maps into ANSCER ROBOTS, such as when a robot needs to navigate a new facility or warehouse. It's important to ensure that the map being loaded is related to that particular environment",
+				"summary": "Load Map in Roobt",
+				"responses": {
+					"200": {
+						"description": "Map loaded",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Map"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Maps"]
+			}
+		},
+		"/maps/data": {
+			"summary": "Active Map and Data",
+			"get": {
+				"operationId": "getActiveMapAndData",
+				"summary": "Get Active map and data",
+				"description": "The Get Active map and data request allows unauthenticated/authenticated users to retrieve detailed information(waypoints, zones) about a specific map.",
+				"security": [],
+				"responses": {
+					"200": {
+						"description": "Currently Active Map and data(Waypoints and Zones related to that map) object.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"items": {
+										"$ref": "#/components/schemas/ActiveMapAndData"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Maps"]
+			}
+		},
+		"/waypoints": {
+			"summary": "Waypoints",
+			"get": {
+				"operationId": "getAllWaypoints",
+				"summary": "Get a list of waypoints",
+				"description": "The Get All Waypoints request allows users to retrieve a list of all the waypoints that are associated with the current active map in ANSCER ROBOT.\n\nTo use this request, you need to send a GET request to the API endpoint. ANSCER ANYA will then retrieve a list of all waypoints that are currently available in active Map and return them in the response body in JSON format.",
+				"responses": {
+					"200": {
+						"description": "A list of waypoints",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/Waypoint"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Waypoints"]
+			},
+			"post": {
+				"operationId": "createWaypoint",
+				"description": "The Create Waypoint request allows you to create a new waypoint for the current active map in ANSCER Robot.",
+				"summary": "Create a new waypoint",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewWaypoint"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Waypoint created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Waypoint"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidationObj"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"409": {
+						"$ref": "#/components/responses/WaypointNameConflict"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Waypoints"]
+			}
+		},
+		"/waypoints/{waypointId}": {
+			"parameters": [
+				{
+					"name": "waypointId",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the waypoint to retrieve, update or delete"
+				}
+			],
+			"get": {
+				"operationId": "getWaypointById",
+				"summary": "Get a waypoint by ID",
+				"description": "The Get Waypoint request allows you to retrieve information about a specific waypoint of the current map in ANSCER ROBOT. This request takes in the waypoint's unique ID as a parameter, and returns a JSON object containing information about the waypoint.",
+				"responses": {
+					"200": {
+						"description": "Waypoint details",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Waypoint"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Waypoints"]
+			},
+			"put": {
+				"operationId": "updateWaypointById",
+				"summary": "Update a waypoint by ID",
+				"description": "The Update Waypoint request allows you to update the information of an existing waypoint for current Active Map in ANSCER ANYA. This request takes in the waypoint's unique ID as a parameter, as well as any updated waypoint information in the form of a JSON object. This request can be used to update a waypoint's name, and category, dockMarker, and/or location.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewWaypoint"
+							}
+						}
+					}
+				},
+				"parameters": [
+					{
+						"name": "updatePose",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						},
+						"description": "Optional boolean parameter. If set to true, the coordinate of the waypoint will be updated to the current robot pose."
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Waypoint updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Waypoint"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidationObj"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"409": {
+						"$ref": "#/components/responses/WaypointNameConflict"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Waypoints"]
+			},
+			"delete": {
+				"operationId": "deleteWaypointById",
+				"summary": "Delete a waypoint by ID",
+				"description": "The Delete Waypoint request allows you to remove a waypoint from the Map. This request takes in the waypoint's unique ID as a parameter, and will permanently delete the waypoint.\n\n**However, it's important to exercise caution when using this request, as it will permanently delete the waypoint, the Missions in which this Waypoint was used will be disabled. User can't be able to Initiate that particular Mission. Needs to update the Mission Tasks, in which this waypoint was used.**",
+				"responses": {
+					"200": {
+						"description": "Waypoint deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Waypoint"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Waypoints"]
+			}
+		},
+		"/zones": {
+			"summary": "Zones",
+			"get": {
+				"operationId": "getAllZones",
+				"summary": "Get a list of zones",
+				"description": "The Get All Zones request allows users to retrieve a list of all the zones that are associated with the current active map in ANSCER ROBOT.",
+				"responses": {
+					"200": {
+						"description": "A list of zones",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/Zone"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Zones"]
+			},
+			"post": {
+				"operationId": "createZone",
+				"description": "The Create Zone request allows you to create a new zone for the current active map in ANSCER Robot. The request body should contain the GeoJSON data of the zone to be created, along with other properties such as the name and category of the zone.\n\n**Note: The isActive property is set to true by default when a new zone is created. This means that the zone is immediately available for use in ANSCER Robot.**",
+				"summary": "Create a new zone",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewZone"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Zone created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Zone"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidationObj"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"409": {
+						"$ref": "#/components/responses/ZoneNameConflict"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Zones"]
+			}
+		},
+		"/zones/{zoneId}": {
+			"parameters": [
+				{
+					"name": "zoneId",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the zone to retrieve, update or delete"
+				}
+			],
+			"get": {
+				"operationId": "getZoneById",
+				"summary": "Get a zone by ID",
+				"description": "The Get Zone request allows you to retrieve information about a specific zone of the current map in ANSCER ROBOT. This request takes in the zone's unique ID as a parameter, and returns a JSON object containing information about the zone.",
+				"responses": {
+					"200": {
+						"description": "Zone details",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Zone"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Zones"]
+			},
+			"put": {
+				"operationId": "updateZoneById",
+				"summary": "Update a zone by ID",
+				"description": "The Update Zone request allows you to update the information of an existing zone for current Active Map in ANSCER ANYA. This request takes in the zone's unique ID as a parameter, as well as any updated zone information in the form of a JSON object. This request can be used to update a zone's name, and category, and/or geometry coordinates.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewZone"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Zone updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Zone"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidationObj"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"409": {
+						"$ref": "#/components/responses/ZoneNameConflict"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Zones"]
+			},
+			"delete": {
+				"operationId": "deleteZoneById",
+				"summary": "Delete a zone by ID",
+				"description": "The Delete Zone request allows you to remove a zone from the Map. This request takes in the zone's unique ID as a parameter, and will permanently delete the zone.\n\n**In another case, you can have an toggleActive zone request that allows you to update the _isActive_ property of a zone. Setting the _isActive_ property to false will disable the zone in that map without deleting it completely.**",
+				"responses": {
+					"200": {
+						"description": "Zone deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Zone"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Zones"]
+			}
+		},
+		"/zones/toggleActive/{zoneId}": {
+			"parameters": [
+				{
+					"name": "zoneId",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the zone to toggle the Active status in the map."
+				}
+			],
+			"put": {
+				"operationId": "toggleActiveZoneById",
+				"summary": "Toggle Active status of a zone by ID",
+				"description": "The Toggle Active Zone request allows you to toggle the _isActive_ property of a zone. This request takes in the zone's unique ID as a parameter, and will toggle the _isActive_ property of the zone.\n\n**Setting the _isActive_ property to false will disable the zone in that map and Robot won't consider it for navigation purpose.**",
+				"responses": {
+					"200": {
+						"description": "Zone updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Zone"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Zones"]
+			}
+		},
+		"/missions": {
+			"summary": "Missions",
+			"get": {
+				"operationId": "getAllMissions",
+				"summary": "Get a list of missions",
+				"description": "The Get All Missions request allows users to retrieve a list of all the missions that are associated with the current active map in ANSCER ROBOT.",
+				"responses": {
+					"200": {
+						"description": "A list of missions",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/Mission"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Missions"]
+			},
+			"post": {
+				"operationId": "createMission",
+				"description": "The Create Mission request allows you to create a new mission for the current active map in ANSCER Robot.",
+				"summary": "Create a new mission",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewMission"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Mission created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Mission"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidationObj"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"409": {
+						"$ref": "#/components/responses/MissionNameConflict"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Missions"]
+			}
+		},
+		"/missions/{missionId}": {
+			"parameters": [
+				{
+					"name": "missionId",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the mission to retrieve, update or delete"
+				}
+			],
+			"get": {
+				"operationId": "getMissionById",
+				"summary": "Get a mission by ID",
+				"description": "The Get Mission request allows you to retrieve information about a specific mission of the current map in ANSCER ROBOT. This request takes in the mission's unique ID as a parameter, and returns a JSON object containing information about the mission.",
+				"responses": {
+					"200": {
+						"description": "Mission details",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Mission"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Missions"]
+			},
+			"put": {
+				"operationId": "updateMissionById",
+				"summary": "Update a mission by ID",
+				"description": "The Update Mission request allows you to update the information of an existing mission for current Active Map in ANSCER ANYA. This request takes in the mission's unique ID as a parameter, as well as any updated mission information in the form of a JSON object. This request can be used to update a mission's name, and iteration, and/or its tasks.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewMission"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Mission updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Mission"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidationObj"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"409": {
+						"$ref": "#/components/responses/MissionNameConflict"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Missions"]
+			},
+			"delete": {
+				"operationId": "deleteMissionById",
+				"summary": "Delete a mission by ID",
+				"description": "The Delete Mission request allows you to remove a mission. This request takes in the mission's unique ID as a parameter, and will permanently delete the mission.",
+				"responses": {
+					"200": {
+						"description": "Mission deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Mission"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Missions"]
+			}
+		},
+		"/missions/initiate/{missionId}": {
+			"parameters": [
+				{
+					"name": "missionId",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the mission to initiate"
+				}
+			],
+			"post": {
+				"operationId": "initiateMissionById",
+				"summary": "Initiate a mission by ID",
+				"description": "The Initiate Mission request allows you to initiate a mission. This request takes in the mission's unique ID as a parameter, and will initiate the mission in the Robot.",
+				"responses": {
+					"200": {
+						"description": "Mission initiated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Mission"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/RobotInManualMode"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Missions"]
+			}
+		},
+		"/robot/quickgoal": {
+			"post": {
+				"operationId": "quickGoal",
+				"summary": "Quick Goal",
+				"description": "The Quick Goal request allows you to send a quick goal to the robot. This request takes in the goal's coordinates as a parameter, and will send the Robot to the desired coordinates.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/pointSchema"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Quick Goal sent",
+						"content": {
+							"application/json": {
+								"example": {
+									"message": "Quick Goal sent"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/RobotInManualMode"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robot"]
+			}
+		},
+		"/robot/quickgoal/{waypointId}": {
+			"parameters": [
+				{
+					"name": "waypointId",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the waypoint to send the robot to."
+				}
+			],
+			"post": {
+				"operationId": "quickGoalWaypoint",
+				"summary": "Quick Goal Waypoint",
+				"description": "The Quick Goal Waypoint request allows you to send a quick goal to the robot. This request takes in the waypoint's unique ID as a parameter, and will send the Robot to the desired waypoint.",
+				"responses": {
+					"200": {
+						"description": "Quick Goal sent",
+						"content": {
+							"application/json": {
+								"example": {
+									"message": "Quick Goal sent"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/RobotInManualMode"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robot"]
+			}
+		},
+		"/robot/initrobot": {
+			"post": {
+				"operationId": "initRobot",
+				"summary": "Initialize Robot",
+				"description": "The Init Robot request allows you to initialize the robot, for proper and smooth localization and navigation.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/pointSchema"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Robot initialized",
+						"content": {
+							"application/json": {
+								"example": {
+									"message": "Robot initialized"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/RobotInManualMode"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robot"]
+			}
+		},
+		"/robot/marker": {
+			"post": {
+				"operationId": "quickGoalMarker",
+				"summary": "Quick Goal to path Marker",
+				"description": "This request allows you to send the robot to a fixed path Point(marker). This request takes in the marker's ID in body of the request, and will send the Robot to the desired marker position.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"required": ["id"],
+								"properties": {
+									"id": {
+										"type": "string",
+										"description": "The ID of the path marker to send the robot to."
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Marker Goal sent",
+						"content": {
+							"application/json": {
+								"example": {
+									"message": "Marker Goal sent"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/RobotInManualMode"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robot"]
+			}
+		}
+	},
+	"components": {
+		"responses": {
+			"ForbiddenError": {
+				"description": "Forbidden.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "Access to this resource is forbidden."
+						}
+					}
+				}
+			},
+			"InternalServerError": {
+				"description": "Internal Server Error",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "Internal Server Error. Please try again later."
+						}
+					}
+				}
+			},
+			"BadRequestValidation": {
+				"description": "Bad Request due to validation errors in the request body",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "Validation failed.",
+							"errors": [
+								{
+									"field": "name",
+									"message": "Name is required."
+								},
+								{
+									"field": "email",
+									"message": "Email must be a valid email address."
+								}
+							]
+						}
+					}
+				}
+			},
+			"BadRequestValidationObj": {
+				"description": "Bad Request due to validation errors in the request body",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "Validation failed.",
+							"errors": [
+								{
+									"field": "name",
+									"message": "Name is required."
+								}
+							]
+						}
+					}
+				}
+			},
+			"BadLoginRequest": {
+				"description": "Bad Request due to validation errors in the request body",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "Validation failed.",
+							"errors": [
+								{
+									"field": "email",
+									"message": "Email must be a valid email address."
+								},
+								{
+									"field": "password",
+									"message": "Password must be 6 characters or longer."
+								}
+							]
+						}
+					}
+				}
+			},
+			"EmailAlreadyRegistered": {
+				"description": "Already registered User with given Email address.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "Already registered User with given Email address."
+						}
+					}
+				}
+			},
+			"MapNameConflict": {
+				"description": "The Map with given name already exists.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "The Map with given name already exists."
+						}
+					}
+				}
+			},
+			"WaypointNameConflict": {
+				"description": "The Waypoint with given name already exists.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "The Waypoint with given name already exists."
+						}
+					}
+				}
+			},
+			"ZoneNameConflict": {
+				"description": "The Zone with given name already exists.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "The Zone with given name already exists."
+						}
+					}
+				}
+			},
+			"MissionNameConflict": {
+				"description": "The Mission with given name already exists.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "The Mission with given name already exists."
+						}
+					}
+				}
+			},
+			"RobotInManualMode": {
+				"description": "Robot is not in Auto Mode, to perform this turn Robot to Autonomous mode.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "Robot is not in Auto Mode, to perform this turn Robot to Autonomous mode."
+						}
+					}
+				}
+			},
+			"UnauthorizedError": {
+				"description": "Unauthorized.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "Authentication token not provided."
+						}
+					}
+				}
+			},
+			"NotFound": {
+				"description": "Resource not found.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "Resource not found."
+						}
+					}
+				}
+			}
+		},
+		"securitySchemes": {
+			"ApiKeyAuth": {
+				"type": "apiKey",
+				"name": "x-auth-token",
+				"in": "header"
+			}
+		},
+		"schemas": {
+			"userRoles": {
+				"type": "string",
+				"enum": ["developer", "admin", "user"]
+			},
+			"userShort": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string",
+						"format": "email"
+					}
+				}
+			},
+			"waypointTypes": {
+				"type": "string",
+				"enum": ["normal", "special", "charging", "home"]
+			},
+			"zoneTypes": {
+				"type": "string",
+				"enum": ["restricted", "warning", "blink", "buzzer", "speed", "no-plan"]
+			},
+			"NewUser": {
+				"type": "object",
+				"required": ["name", "email", "password", "role"],
+				"properties": {
+					"name": {
+						"type": "string",
+						"minLength": 3,
+						"maxLength": 50
+					},
+					"email": {
+						"type": "string",
+						"minLength": 5,
+						"maxLength": 255,
+						"format": "email",
+						"uniqueItems": true,
+						"description": "A Unique email address of the user"
+					},
+					"password": {
+						"type": "string",
+						"minLength": 6,
+						"maxLength": 255
+					},
+					"role": {
+						"$ref": "#/components/schemas/userRoles"
+					}
+				}
+			},
+			"UpdateUser": {
+				"type": "object",
+				"required": ["name", "email", "isActive", "role"],
+				"properties": {
+					"name": {
+						"type": "string",
+						"minLength": 3,
+						"maxLength": 50
+					},
+					"email": {
+						"type": "string",
+						"minLength": 5,
+						"maxLength": 255,
+						"format": "email",
+						"uniqueItems": true,
+						"description": "A Unique email address of the user"
+					},
+					"isActive": {
+						"type": "boolean"
+					},
+					"role": {
+						"$ref": "#/components/schemas/userRoles"
+					}
+				}
+			},
+			"ResetUser": {
+				"type": "object",
+				"required": ["newPassword", "authPassword"],
+				"properties": {
+					"authPassword": {
+						"type": "string",
+						"minLength": 6,
+						"maxLength": 255
+					},
+					"newPassword": {
+						"type": "string",
+						"minLength": 6,
+						"maxLength": 255
+					}
+				}
+			},
+			"Login": {
+				"type": "object",
+				"required": ["email", "password"],
+				"properties": {
+					"email": {
+						"type": "string",
+						"minLength": 5,
+						"maxLength": 255,
+						"format": "email"
+					},
+					"password": {
+						"type": "string",
+						"minLength": 6,
+						"maxLength": 255
+					}
+				}
+			},
+			"LoggedInUser": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string",
+						"minLength": 3,
+						"maxLength": 50
+					},
+					"email": {
+						"type": "string",
+						"minLength": 5,
+						"maxLength": 255,
+						"format": "email"
+					},
+					"role": {
+						"$ref": "#/components/schemas/userRoles"
+					},
+					"token": {
+						"type": "string",
+						"description": "JWT token"
+					}
+				}
+			},
+			"pointSchema": {
+				"type": "object",
+				"required": ["position", "orientation"],
+				"properties": {
+					"position": {
+						"type": "object",
+						"required": ["x", "y", "z"],
+						"properties": {
+							"x": {
+								"type": "number",
+								"format": "double"
+							},
+							"y": {
+								"type": "number",
+								"format": "double"
+							},
+							"z": {
+								"type": "number",
+								"format": "double"
+							}
+						}
+					},
+					"orientation": {
+						"type": "object",
+						"required": ["x", "y", "z", "w"],
+						"properties": {
+							"x": {
+								"type": "number",
+								"format": "double"
+							},
+							"y": {
+								"type": "number",
+								"format": "double"
+							},
+							"z": {
+								"type": "number",
+								"format": "double"
+							},
+							"w": {
+								"type": "number",
+								"format": "double"
+							}
+						}
+					}
+				}
+			},
+			"mapProperties": {
+				"type": "object",
+				"properties": {
+					"origin": {
+						"type": "object",
+						"$ref": "#/components/schemas/pointSchema"
+					},
+					"width": {
+						"type": "number",
+						"format": "double"
+					},
+					"height": {
+						"type": "number",
+						"format": "double"
+					},
+					"resolution": {
+						"type": "number",
+						"format": "double"
+					},
+					"previewUrl": {
+						"type": "string",
+						"format": "uri"
+					}
+				}
+			},
+			"Map": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string",
+						"minLength": 3,
+						"maxLength": 50
+					},
+					"isActive": {
+						"type": "boolean"
+					},
+					"properties": {
+						"type": "object",
+						"$ref": "#/components/schemas/mapProperties"
+					},
+					"createdBy": {
+						"type": "object",
+						"$ref": "#/components/schemas/userShort",
+						"description": "The user who created this map"
+					},
+					"updatedBy": {
+						"type": "object",
+						"$ref": "#/components/schemas/userShort",
+						"description": "The user who last updated this map"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time",
+						"description": "The date and time this user was created"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time",
+						"description": "The date and time this user was last updated"
+					}
+				}
+			},
+			"NewMap": {
+				"type": "object",
+				"required": ["name"],
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "A unique name of the map",
+						"minLength": 3,
+						"maxLength": 50,
+						"uniqueItems": true
+					}
+				}
+			},
+			"mapReference": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string",
+						"minLength": 3,
+						"maxLength": 50
+					}
+				}
+			},
+			"ActiveMapAndData": {
+				"type": "object",
+				"properties": {
+					"map": {
+						"$ref": "#/components/schemas/Map",
+						"example": {
+							"_id": "60f0b3b0a3b3c3a5b4a3b3c3",
+							"name": "Map 1",
+							"isActive": true,
+							"properties": {
+								"origin": {
+									"position": {
+										"x": 12.56,
+										"y": -4.683,
+										"z": 0
+									},
+									"orientation": {
+										"x": null,
+										"y": 0,
+										"z": 0,
+										"w": 0
+									}
+								},
+								"width": 450,
+								"height": 243,
+								"resolution": 0.05,
+								"previewUrl": "https://www.anscer.com"
+							},
+							"createdBy": {
+								"_id": "60f0b3b0a3b3c3a5b4a3b3c3",
+								"name": "Admin",
+								"email": "admin@anscer.com"
+							}
+						}
+					}
+				}
+			},
+			"NewWaypoint": {
+				"type": "object",
+				"required": ["name", "category"],
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "A unique name of the waypoint",
+						"minLength": 3,
+						"maxLength": 50,
+						"uniqueItems": true
+					},
+					"category": {
+						"type": "string",
+						"$ref": "#/components/schemas/waypointTypes"
+					},
+					"dockMarker": {
+						"type": "number",
+						"description": "Dock marker number, this will be required if the waypoint type is charging or special."
+					},
+					"properties": {
+						"type": "object"
+					}
+				}
+			},
+			"Waypoint": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string",
+						"minLength": 3,
+						"maxLength": 50
+					},
+					"category": {
+						"type": "string",
+						"$ref": "#/components/schemas/waypointTypes"
+					},
+					"dockMarker": {
+						"type": "number"
+					},
+					"coordinate": {
+						"type": "object",
+						"$ref": "#/components/schemas/pointSchema"
+					},
+					"map": {
+						"type": "object",
+						"$ref": "#/components/schemas/mapReference"
+					},
+					"properties": {
+						"type": "object"
+					},
+					"createdBy": {
+						"type": "object",
+						"$ref": "#/components/schemas/userShort",
+						"description": "The user who created this waypoint"
+					},
+					"updatedBy": {
+						"type": "object",
+						"$ref": "#/components/schemas/userShort",
+						"description": "The user who last updated this waypoint"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time",
+						"description": "The date and time this waypoint was created"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time",
+						"description": "The date and time this waypoint was last updated"
+					}
+				}
+			},
+			"GeoJSONPolygon": {
+				"type": "object",
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": ["Polygon"]
+					},
+					"coordinates": {
+						"type": "array",
+						"items": {
+							"type": "array",
+							"items": {
+								"type": "number",
+								"format": "double"
+							}
+						}
+					}
+				},
+				"required": ["type", "coordinates"],
+				"example": {
+					"type": "Polygon",
+					"coordinates": [
+						[
+							[-73.989, 40.735],
+							[-74.012, 40.678],
+							[-73.98, 40.643],
+							[-73.989, 40.735]
+						]
+					]
+				}
+			},
+			"GeoJSONLineString": {
+				"type": "object",
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": ["LineString"]
+					},
+					"coordinates": {
+						"type": "array",
+						"items": {
+							"type": "array",
+							"items": {
+								"type": "number",
+								"format": "double"
+							}
+						}
+					}
+				},
+				"required": ["type", "coordinates"],
+				"example": {
+					"type": "LineString",
+					"coordinates": [
+						[-73.989, 40.735],
+						[-74.012, 40.678],
+						[-73.98, 40.643]
+					]
+				}
+			},
+			"GeoJSONPoint": {
+				"type": "object",
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": ["Point"]
+					},
+					"coordinates": {
+						"type": "array",
+						"items": {
+							"type": "number",
+							"format": "double"
+						}
+					}
+				},
+				"required": ["type", "coordinates"],
+				"example": {
+					"type": "Point",
+					"coordinates": [-73.989, 40.735]
+				}
+			},
+			"NewZone": {
+				"type": "object",
+				"required": ["name", "category", "geometry"],
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "A unique name of the zone",
+						"minLength": 3,
+						"maxLength": 50,
+						"uniqueItems": true
+					},
+					"category": {
+						"type": "string",
+						"$ref": "#/components/schemas/zoneTypes"
+					},
+					"type": {
+						"type": "string",
+						"enum": ["Feature"],
+						"description": "GeoJSON type of the zone, always Feature"
+					},
+					"geometry": {
+						"oneOf": [
+							{
+								"$ref": "#/components/schemas/GeoJSONPoint"
+							},
+							{
+								"$ref": "#/components/schemas/GeoJSONLineString"
+							},
+							{
+								"$ref": "#/components/schemas/GeoJSONPolygon"
+							}
+						]
+					},
+					"properties": {
+						"type": "object"
+					}
+				}
+			},
+			"Zone": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string",
+						"minLength": 3,
+						"maxLength": 50
+					},
+					"category": {
+						"type": "string",
+						"$ref": "#/components/schemas/zoneTypes"
+					},
+					"isActive": {
+						"type": "boolean",
+						"default": true
+					},
+					"type": {
+						"type": "string",
+						"enum": ["Feature"],
+						"description": "GeoJSON type of the zone, always Feature"
+					},
+					"geometry": {
+						"oneOf": [
+							{
+								"$ref": "#/components/schemas/GeoJSONPoint"
+							},
+							{
+								"$ref": "#/components/schemas/GeoJSONLineString"
+							},
+							{
+								"$ref": "#/components/schemas/GeoJSONPolygon"
+							}
+						]
+					},
+					"map": {
+						"type": "object",
+						"$ref": "#/components/schemas/mapReference"
+					},
+					"properties": {
+						"type": "object"
+					},
+					"createdBy": {
+						"type": "object",
+						"$ref": "#/components/schemas/userShort",
+						"description": "The user who created this zone"
+					},
+					"updatedBy": {
+						"type": "object",
+						"$ref": "#/components/schemas/userShort",
+						"description": "The user who last updated this zone"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time",
+						"description": "The date and time this zone was created"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time",
+						"description": "The date and time this zone was last updated"
+					}
+				}
+			},
+			"Mission": {
+				"type": "object",
+				"required": ["name", "iteration", "tasks"],
+				"properties": {
+					"name": {
+						"type": "string",
+						"minLength": 3,
+						"maxLength": 50
+					},
+					"iteration": {
+						"type": "number",
+						"format": "int32",
+						"minimum": 1,
+						"default": 1
+					},
+					"tasks": {
+						"type": "array",
+						"minItems": 1,
+						"items": {
+							"type": "object",
+							"anyOf": [
+								{
+									"$ref": "#/components/schemas/move"
+								},
+								{
+									"$ref": "#/components/schemas/charging"
+								},
+								{
+									"$ref": "#/components/schemas/conveyor"
+								},
+								{
+									"$ref": "#/components/schemas/turnTable"
+								},
+								{
+									"$ref": "#/components/schemas/manipulator"
+								},
+								{
+									"$ref": "#/components/schemas/lifter"
+								},
+								{
+									"$ref": "#/components/schemas/waitUser"
+								},
+								{
+									"$ref": "#/components/schemas/docking"
+								},
+								{
+									"$ref": "#/components/schemas/undocking"
+								},
+								{
+									"$ref": "#/components/schemas/multiWaypoint"
+								},
+								{
+									"$ref": "#/components/schemas/qrMarker"
+								}
+							]
+						}
+					},
+					"map": {
+						"type": "object",
+						"$ref": "#/components/schemas/mapReference"
+					},
+					"properties": {
+						"type": "object"
+					},
+					"createdBy": {
+						"type": "object",
+						"$ref": "#/components/schemas/userShort",
+						"description": "The user who created this mission"
+					},
+					"updatedBy": {
+						"type": "object",
+						"$ref": "#/components/schemas/userShort",
+						"description": "The user who last updated this mission"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time",
+						"description": "The date and time this mission was created"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time",
+						"description": "The date and time this mission was last updated"
+					}
+				}
+			},
+			"charging": {
+				"type": "object",
+				"required": ["type", "data"],
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": ["charging"]
+					},
+					"name": {
+						"type": "string",
+						"maxLength": 50
+					},
+					"id": {
+						"type": "string",
+						"format": "timestamp"
+					},
+					"data": {
+						"type": "object",
+						"required": [
+							"hours",
+							"minutes",
+							"percentage",
+							"ignoreTime",
+							"ignorePercentage"
+						],
+						"properties": {
+							"hours": {
+								"type": "number",
+								"minimum": 0
+							},
+							"minutes": {
+								"type": "number",
+								"minimum": 0
+							},
+							"percentage": {
+								"type": "number",
+								"minimum": 1,
+								"maximum": 100
+							},
+							"ignoreTime": {
+								"type": "boolean"
+							},
+							"ignorePercentage": {
+								"type": "boolean"
+							},
+							"label": {
+								"type": "string",
+								"minLength": 3,
+								"maxLength": 50
+							}
+						}
+					}
+				}
+			},
+			"move": {
+				"type": "object",
+				"required": ["type", "data"],
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": ["move"]
+					},
+					"name": {
+						"type": "string",
+						"maxLength": 50
+					},
+					"id": {
+						"type": "string",
+						"format": "timestamp"
+					},
+					"data": {
+						"type": "object",
+						"required": ["waypoint"],
+						"properties": {
+							"waypoint": {
+								"type": "string",
+								"format": "uuid",
+								"description": "The ID of the waypoint to move to"
+							},
+							"label": {
+								"type": "string",
+								"minLength": 3,
+								"maxLength": 50
+							}
+						}
+					}
+				}
+			},
+			"conveyor": {
+				"type": "object",
+				"required": ["type", "data"],
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": ["conveyor"]
+					},
+					"name": {
+						"type": "string",
+						"maxLength": 50
+					},
+					"id": {
+						"type": "string",
+						"format": "timestamp"
+					},
+					"data": {
+						"type": "object",
+						"required": ["conveyor"],
+						"properties": {
+							"conveyor": {
+								"type": "number",
+								"minimum": 0,
+								"format": "int32"
+							},
+							"label": {
+								"type": "string",
+								"minLength": 3,
+								"maxLength": 50
+							}
+						}
+					}
+				}
+			},
+			"turnTable": {
+				"type": "object",
+				"required": ["type", "data"],
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": ["turnTable"]
+					},
+					"name": {
+						"type": "string",
+						"maxLength": 50
+					},
+					"id": {
+						"type": "string",
+						"format": "timestamp"
+					},
+					"data": {
+						"type": "object",
+						"required": ["turnTable"],
+						"properties": {
+							"turnTable": {
+								"type": "number",
+								"minimum": 0,
+								"format": "int32"
+							},
+							"label": {
+								"type": "string",
+								"minLength": 3,
+								"maxLength": 50
+							}
+						}
+					}
+				}
+			},
+			"manipulator": {
+				"type": "object",
+				"required": ["type", "data"],
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": ["manipulator"]
+					},
+					"name": {
+						"type": "string",
+						"maxLength": 50
+					},
+					"id": {
+						"type": "string",
+						"format": "timestamp"
+					},
+					"data": {
+						"type": "object",
+						"required": ["manipulator"],
+						"properties": {
+							"manipulator": {
+								"type": "number",
+								"minimum": 0,
+								"format": "int32"
+							},
+							"label": {
+								"type": "string",
+								"minLength": 3,
+								"maxLength": 50
+							}
+						}
+					}
+				}
+			},
+			"lifter": {
+				"type": "object",
+				"required": ["type", "data"],
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": ["lifter"]
+					},
+					"name": {
+						"type": "string",
+						"maxLength": 50
+					},
+					"id": {
+						"type": "string",
+						"format": "timestamp"
+					},
+					"data": {
+						"type": "object",
+						"required": ["lifter"],
+						"properties": {
+							"lifter": {
+								"type": "number",
+								"minimum": 0,
+								"format": "int32"
+							},
+							"label": {
+								"type": "string",
+								"minLength": 3,
+								"maxLength": 50
+							}
+						}
+					}
+				}
+			},
+			"waitUser": {
+				"type": "object",
+				"required": ["type", "data"],
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": ["waitUser"]
+					},
+					"name": {
+						"type": "string",
+						"maxLength": 50
+					},
+					"id": {
+						"type": "string",
+						"format": "timestamp"
+					},
+					"data": {
+						"type": "object",
+						"required": ["activate", "number"],
+						"properties": {
+							"activate": {
+								"type": "boolean"
+							},
+							"number": {
+								"type": "number",
+								"minimum": 0,
+								"format": "int32"
+							},
+							"label": {
+								"type": "string",
+								"minLength": 3,
+								"maxLength": 50
+							}
+						}
+					}
+				}
+			},
+			"docking": {
+				"type": "object",
+				"required": ["type", "data"],
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": ["docking"]
+					},
+					"name": {
+						"type": "string",
+						"maxLength": 50
+					},
+					"id": {
+						"type": "string",
+						"format": "timestamp"
+					},
+					"data": {
+						"type": "object",
+						"required": ["dockPoint", "dockMarker"],
+						"properties": {
+							"dockPoint": {
+								"type": "string",
+								"format": "uuid",
+								"description": "The ID of the docking waypoint(Special Waypoint) to dock to"
+							},
+							"dockMarker": {
+								"type": "number",
+								"minimum": 0,
+								"format": "int32"
+							},
+							"label": {
+								"type": "string",
+								"minLength": 3,
+								"maxLength": 50
+							}
+						}
+					}
+				}
+			},
+			"undocking": {
+				"type": "object",
+				"required": ["type", "data"],
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": ["undocking"]
+					},
+					"name": {
+						"type": "string",
+						"maxLength": 50
+					},
+					"id": {
+						"type": "string",
+						"format": "timestamp"
+					},
+					"data": {
+						"type": "object",
+						"required": ["dockMarker"],
+						"properties": {
+							"dockMarker": {
+								"type": "number",
+								"minimum": 0,
+								"format": "int32"
+							},
+							"label": {
+								"type": "string",
+								"minLength": 3,
+								"maxLength": 50
+							}
+						}
+					}
+				}
+			},
+			"multiWaypoint": {
+				"type": "object",
+				"required": ["type", "data"],
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": ["multiWaypoint"]
+					},
+					"name": {
+						"type": "string",
+						"maxLength": 50
+					},
+					"id": {
+						"type": "string",
+						"format": "timestamp"
+					},
+					"data": {
+						"type": "object",
+						"required": ["multiWaypoint"],
+						"properties": {
+							"multiWaypoint": {
+								"type": "number",
+								"minimum": 0,
+								"format": "int32"
+							},
+							"label": {
+								"type": "string",
+								"minLength": 3,
+								"maxLength": 50
+							}
+						}
+					}
+				}
+			},
+			"qrMarker": {
+				"type": "object",
+				"required": ["type", "data"],
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": ["qrMarker"]
+					},
+					"name": {
+						"type": "string",
+						"maxLength": 50
+					},
+					"id": {
+						"type": "string",
+						"format": "timestamp"
+					},
+					"data": {
+						"type": "object",
+						"required": ["qrMarker"],
+						"properties": {
+							"qrMarker": {
+								"type": "number",
+								"minimum": 0,
+								"format": "int32"
+							},
+							"label": {
+								"type": "string",
+								"minLength": 3,
+								"maxLength": 50
+							}
+						}
+					}
+				}
+			},
+			"NewMission": {
+				"type": "object",
+				"required": ["name", "iteration", "tasks"],
+				"properties": {
+					"name": {
+						"type": "string",
+						"minLength": 3,
+						"maxLength": 50
+					},
+					"iteration": {
+						"type": "number",
+						"format": "int32",
+						"minimum": 1,
+						"default": 1
+					},
+					"tasks": {
+						"type": "array",
+						"minItems": 1,
+						"items": {
+							"type": "object",
+							"anyOf": [
+								{
+									"$ref": "#/components/schemas/move"
+								},
+								{
+									"$ref": "#/components/schemas/charging"
+								},
+								{
+									"$ref": "#/components/schemas/conveyor"
+								},
+								{
+									"$ref": "#/components/schemas/turnTable"
+								},
+								{
+									"$ref": "#/components/schemas/manipulator"
+								},
+								{
+									"$ref": "#/components/schemas/lifter"
+								},
+								{
+									"$ref": "#/components/schemas/waitUser"
+								},
+								{
+									"$ref": "#/components/schemas/docking"
+								},
+								{
+									"$ref": "#/components/schemas/undocking"
+								},
+								{
+									"$ref": "#/components/schemas/multiWaypoint"
+								},
+								{
+									"$ref": "#/components/schemas/qrMarker"
+								}
+							]
+						}
+					},
+					"properties": {
+						"type": "object"
+					}
+				}
+			},
+			"User": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string",
+						"minLength": 3,
+						"maxLength": 50
+					},
+					"email": {
+						"type": "string",
+						"minLength": 5,
+						"maxLength": 255,
+						"format": "email"
+					},
+					"isActive": {
+						"type": "boolean"
+					},
+					"role": {
+						"$ref": "#/components/schemas/userRoles"
+					},
+					"createdBy": {
+						"type": "object",
+						"$ref": "#/components/schemas/userShort",
+						"description": "The user who created this user"
+					},
+					"updatedBy": {
+						"type": "object",
+						"$ref": "#/components/schemas/userShort",
+						"description": "The user who last updated this user"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time",
+						"description": "The date and time this user was created"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time",
+						"description": "The date and time this user was last updated"
+					}
+				}
+			}
+		}
+	}
+}

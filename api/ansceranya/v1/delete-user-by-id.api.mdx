@@ -1,0 +1,65 @@
+---
+id: delete-user-by-id
+title: "Delete a user by ID"
+description: "The Remove User request allows you to remove a user from ANSCER ANYA. This request takes in the user's unique ID as a parameter, and will permanently delete the user's account and all associated data from the ANSCER ANYA database."
+sidebar_label: "Delete a user by ID"
+hide_title: true
+hide_table_of_contents: true
+api: eJzlV1tr40YU/iuH6UNb0NrJbgJFT802KYQuuyXJUkow5Vg6ts7uaEaZix3H6L+XM5JtOfFmt4FCoS+JNTr3y/eN1so25DCwNZelylVJmgJ99OTeri5LlamSfOG4EQGVq5uK4IpquyAQGXB0F8kHQK3t0sPKRggWXCeBEEVm5mwNZ++vf7m4grP3f56N4KZiv1UN+Jk8sIFQUVL43kM0fBcJLs8BPSA06LCmQC4DNCUsWWtoyNVoyAS9gi7ooQEsChtNSOKoNaD3tmAMVEKJAbuYRH4QV3ozRU8jlSlHvrHGk1f5Wr0+OpJ/+6VI+XeepU6FNYFMEDlsGs1Fqun4kxfhtfJFRTXKr7BqSOXKTj9REVSmGicdCNy5+ovLgZAPjs1cZWpmXY1B5SpGLlWbKYM1HRKs2bwjMw+Vyt9kqsb7zdPpUZspqpH1V9RO99Ren54OvHf6babYnxWBF8MQptZqQiNvndUHgyMTa5XfqpIWpCVrlSksazYqU9I4NclU4CDK6fnKavJisHAkvXu7OlTApxOaxm5ZWej1IMjAJQ/fVO8v1ve5Ej4uUrufy3VlXRADsSlflItGH6BX/k8l1Bf5LDxrROJ+Fbimg1nK27SsIrHLDpboN00c1O5fczWs8V7CsuyqbeXo5Oj4ABgYjKGyjh+oHH0dDege66bbkZq8x7n4OIuhIhN6WQj2MxkwNkDj7IJLMbyJ4M3TCH61bsplSebF7ouCvBf4Dh08extdQcAeZjvbmwhOnkZwtdGQmGc2mhdX4pClzvHpISS+NIGcQQ3X5Bbk4MI5617o+qCtEfyuCT1BcCvAObIBjYFcF5WMCc69AJuMiRcU2zKWHK/75Utrk0iVJewGQ5WY5i6yo1LlwUXKnjLFblWfDvPlOdjZlvg67g2OaUFZP8dgNyyl2kmmagqV3RG9wIeEkauxGPDjdRdjqzLlUwW6BKLTKldVCE0+Hq8r60ObrxvrQjvGhsdrEWRr2oMb1zhbxiIN9dnvl9DZVZlaoGOc6g63xGbqSs8R2hao0+FEbM4watnt3fEhT0M237kCkQfpwUiqKGEPPf10pDJ1cvJm31E6/WYPYjMZ7wsxtL843re8OP4my72lNGMT6UYRHYdVasdZw7/RSgBD5beT4etrmZ6uokOh7TBhOlQbPlD3rwS4XiWw2QxmRVgmuJPnmU3aPQ4+CvJJIsP3LFc3b2dhiY7AWx3TCJTkeW6EwyzUaHDeoTHGYGuZV/njGDUEh8ZLYeVyKDYqGz35JM2mjLIXlMBpU7urD28/3Fz390v2e656EAXr5mj4IUGBH7MpecFlRO1hyaGCWdQaFux5yprDKjkTHHFWg5VOh4r4kcMMyOBUs5nL21q8+eAIa82GeoUDWW0v3j4DR2UsJHcTUYPGqe3vulxL4JR8y0WWZjMumEyxkjQHZWUPFc8rvQJfoJa16mKPPtiaH+Qg667pEudeFRLmI2vrgENHABKyb6jgGRdgiEo/gj+kPoMGZ4+sFGjANoFrfngm68ZZ4Zm+jzXeb+W3OLGQwnew9rjUwijbFVPHo6PRUQ/0WKSl7sdaFug6NmnVswF6+Xw8Xi6XIzS+IDcqbD3+rtf+6NX2MqR8p/vzTi6tQ2N9qNEMHJ13nx79p850BZfnj5divSOi/8/3Uw83ge7DuNHI6bsg9WHdM85tokMpet7z4iTrWeBWrddi6KPTbSvHd5GcIN9kRxoJB0v28rtU+Qy1p2cK/8NVT7M/wj/mzS9ks0FUs0pcpqM8qUx9ptWO69tJm20AVSLuXspdqwkDtSf3kz2uPr94d3Fzodr2bz6AaWw=
+sidebar_class_name: "delete api-method"
+info_path: api/v1/anscer-anya-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Delete a user by ID</h1>
+
+<MethodEndpoint method={"delete"} path={"/users/{userId}"}></MethodEndpoint>
+
+<SecuritySchemes infoPath={"api/v1/anscer-anya-api"}></SecuritySchemes>
+
+
+
+The Remove User request allows you to remove a user from ANSCER ANYA. This request takes in the user's unique ID as a parameter, and will permanently delete the user's account and all associated data from the ANSCER ANYA database.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"userId","in":"path","required":true,"schema":{"type":"string"},"description":"The ID of the user to retrieve, update or delete"}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+User deleted
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"_id"} required={false} schemaName={"uuid"} qualifierMessage={undefined} schema={{"type":"string","format":"uuid"}}></SchemaItem><SchemaItem collapsible={false} name={"name"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** `>= 3 characters` and `<= 50 characters`"} schema={{"type":"string","minLength":3,"maxLength":50}}></SchemaItem><SchemaItem collapsible={false} name={"email"} required={false} schemaName={"email"} qualifierMessage={"**Possible values:** `>= 5 characters` and `<= 255 characters`"} schema={{"type":"string","minLength":5,"maxLength":255,"format":"email"}}></SchemaItem><SchemaItem collapsible={false} name={"isActive"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"role"} required={false} schemaName={"userRoles"} qualifierMessage={"**Possible values:** [`developer`, `admin`, `user`]"} schema={{"type":"string","enum":["developer","admin","user"],"title":"userRoles"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>createdBy</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+The user who created this user
+
+</div><SchemaItem collapsible={false} name={"_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"name"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"email"} required={false} schemaName={"email"} qualifierMessage={undefined} schema={{"type":"string","format":"email"}}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>updatedBy</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+The user who last updated this user
+
+</div><SchemaItem collapsible={false} name={"_id"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"name"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"email"} required={false} schemaName={"email"} qualifierMessage={undefined} schema={{"type":"string","format":"email"}}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={false} name={"createdAt"} required={false} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time","description":"The date and time this user was created"}}></SchemaItem><SchemaItem collapsible={false} name={"updatedAt"} required={false} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time","description":"The date and time this user was last updated"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"name\": \"string\",\n  \"email\": \"user@example.com\",\n  \"isActive\": true,\n  \"role\": \"developer\",\n  \"createdBy\": {\n    \"_id\": \"string\",\n    \"name\": \"string\",\n    \"email\": \"user@example.com\"\n  },\n  \"updatedBy\": {\n    \"_id\": \"string\",\n    \"name\": \"string\",\n    \"email\": \"user@example.com\"\n  },\n  \"createdAt\": \"2024-12-03T13:26:27.374Z\",\n  \"updatedAt\": \"2024-12-03T13:26:27.374Z\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"401"} value={"401"}><div>
+
+Unauthorized.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Authentication token not provided.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Authentication token not provided.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Forbidden.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"404"} value={"404"}><div>
+
+Resource not found.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Resource not found.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Resource not found.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"500"} value={"500"}><div>
+
+Internal Server Error
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>

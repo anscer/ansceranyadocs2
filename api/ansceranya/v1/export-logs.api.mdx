@@ -1,0 +1,57 @@
+---
+id: export-logs
+title: "Export logs"
+description: "To export all the logs created by the robot between"
+sidebar_label: "Export logs"
+hide_title: true
+hide_table_of_contents: true
+api: eJydVm1v4zYM/iuE9tUXp7sOGPxp2dANxYa7w7XFMBTFwNi0zTtZ8vSSNA383wfKTuo2wXbol7xIJB+S4vNIe2V7chjYmutKFYoee+vCH7bxKlMV+dJxL5uqULcWxl1ArSG0BNo2HkpHGKiC9S6tObu2AdYUtkQGVKYc+d4aT14Ve/X9cilfLwMLGtQUypYqqK2bYFSmSmsCmSAu2Peay5Ro/sWL3175sqUO5VfY9aQKZddfqBTH3klZgUfUv7maGfng2DQqU7V1HQZVqBi5UkOmDHZ0ajhkStOG9GzHxG5NTnY68h6bc15DpgIHTWOBahhk5XJ5cVr/ncEYWuv4iarF/1dNj9j1OkEe0dUqhpZMmGwh2K9kwNgAvbMbriTwIYP3pxn8at2aq4rMm+HLkryHYCG07MGRt9GVBOzlQA+xDxlcnmbw+eAhOdc2mjd34lykEfiHc8N3bQI5gxpuyG3IwZVz1r0R+mysBXzShJ4guB1gg2xAYyA3ZiVTgo1XxX2akgeZqNBaoWJDaZIxtKpQuXAtPxLDJwBx26votCpUG0Jf5Pm+tT4MxV7shhx7zvdiyNYMp4RuScajimWamdWnaxjjqkxt0DGu9cgfiZmKNrGTTLUtUafFB4lZY9RCo+flc0irDze/XH2G1Ye/VjMoEHsQ4i2ETqm8GdKPS5Wpy8v3L4HS6jcjSMwUfGrEPP7m4mXkzcU3RZ4ipSN8kNMoo+OwS8ex6vl32gkfVXH/MN++EbkaOzo3OioHpkV10CH1+E504V3issoUSzYtYSXKM8j/2ibvSWVeJXlSyHyfPSB4W4ctOgJvdUwjUJHnxlAlRO7QYEOApgKMwXYYCOTDMWoIDo1PdwEbkBitjZ58smZTRRFBStw/9O7zx58/3t4s4Fb0gf0LqEmjwLoGDT8lpvmcTcUbriJqD1sOLdRRa9iw5zVrDrsEJjR1VoOVkw4t8SvADMjgWrNpZLcTNB8cYafZ0ORwpqrjpegzcFTFUmo3ETVoXFuXjYV2kjglbLkSqa65ZDLlTsqctZU9tNy0ege+RC20GnOPPtiOn2Qhk0vVbiXPF11IkoqsrQMOo75Kyr6nkmsuwRBVfgF/Sn9mB5y9ilKiAdsH7vjpP6runRUZn86xw8ej/VEnNtJ4W59rtQj2kWLqYrFcLCcdxTKRehprIdBN7Ccle1YvX+T5drtdoPEluUVpu/y7yftOXiPUIYutH31/erZLdOitDx2aGdDV+FrRZx4z+2d9f+u7ZiJtoMeQ9xrZiMSkavaTaItQJuhJth+ySUnv1X6/Rk93Tg+DLP8TyYl6PDwLbxKP7MB3EZavtJtu2j4khdZxVI1Xt9Mwv0R+u7pVw/AvRNBvcw==
+sidebar_class_name: "get api-method"
+info_path: api/v1/anscer-anya-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Export logs</h1>
+
+<MethodEndpoint method={"get"} path={"/logs/export"}></MethodEndpoint>
+
+<SecuritySchemes infoPath={"api/v1/anscer-anya-api"}></SecuritySchemes>
+
+
+
+To export all the logs created by the robot between 
+
+## Request
+
+<div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+Logs fetched for export
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"_id"} required={false} schemaName={"uuid"} qualifierMessage={undefined} schema={{"type":"string","format":"uuid"}}></SchemaItem><SchemaItem collapsible={false} name={"name"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"level"} required={false} schemaName={"number"} qualifierMessage={undefined} schema={{"type":"number"}}></SchemaItem><SchemaItem collapsible={false} name={"message"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"name\": \"string\",\n  \"level\": 0,\n  \"message\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"401"} value={"401"}><div>
+
+Unauthorized.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Authentication token not provided.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Authentication token not provided.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Forbidden.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"404"} value={"404"}><div>
+
+Resource not found.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Resource not found.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Resource not found.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"500"} value={"500"}><div>
+
+Internal Server Error
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>

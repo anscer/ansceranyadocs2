@@ -1,0 +1,53 @@
+---
+id: get-all-loads
+title: "Get all loads"
+description: "Retrieve a list of all loads."
+sidebar_label: "Get all loads"
+hide_title: true
+hide_table_of_contents: true
+api: eJydVdtu20YQ/ZXF9JUm5TQFAj5VCJzASBMYkY0+GEIwIkfiJstddncoWSX478EsKYuynKteRM7lzPUMO3ANeWTt7HUJOWyI58b847AMkEBJofC6ES3k8JHYa9qSQmV0YOXWCo1RRoxTSMBTaJwNFCDv4MVsJn+nCPNHRzNGKJxlsiym2DRGFzGV7HMQ+w5CUVGN8sT7hiAH9B73kIBmqsNE7lafqWBIoPFSEOshi0+6nBgF9tpuIIG18zUy5NC2uoQ+AYs1nRv2CQTiD9/SSQ23UfiMssaHf0lvKp5obVuvyB9cb1zQUmz4ifIOuP3TAk/L7xMoPCFTOefv1l0i0wXrmsSlbcpfc+kTYM1G7GRToJdfAi9nl+cjv7PYcuW8/p/K9McDpwesGxNbWlMIuJEg85YrsjzaKnZfyCrrWDXebXUpwIcM/jzP4I3zK12WZH87fFFQCIqd4koH5Sm41hekdFDrI/aQwV/Prf21ZfIWjVqQ35JXV947/5vJPIuVqhtDGEix3yvcoLbKIJNPD6Nh3ATI72Eg9jKBmrhyI+GFNcgV5JAdaBkiuLh00HoDOVTMTZ5lXeUC93nXOM99ho3OOjHUzvZn9+K2IplQ2RZxbPObazXgQgJb9BpXZlhiwYwF27aWLI0r0EThUjDX2BrZwKP4uUjzD4vXVx/Vm/eLSSQl5krYncqmS9bTQK9mpxFezX4BWsAi6tiAKfD28hR4e/kzwCNQnNpShlC0XvM+TmHe6He0FyZAfr+cqhdyI4dGTo2ONyUK4XDk4OFCGHkRWSSnRpKpCEu5TL28r130Hhl+muNZGRO1DgpVcGveoScVnGkHulbIqiLTBLV3rarR4obk0au1IYqfgy1VujAUUnUrFJNmoDFuN7iwU1rWHgtWO82V4tPehX1gqoXej6OAy3SWzkaOYRGnPtYv4Iu2ibuQTLY75Fm22+1StKEgnxauzv4Yve+EE1SjFtsw+P59tBvusgtco50Eekt8/EA+bVx3ZP8PP6zjIJkeOGsMahuvtiTejcy9B3Ng9kCme+i6FQa686bvRfxfS142aXnkXlyk5DB7WbIvtB/vXcORpKYdNujJceqnF+Tt1S30/VcUJdLi
+sidebar_class_name: "get api-method"
+info_path: fms-api/v1/anscer-fms-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Get all loads</h1>
+
+<MethodEndpoint method={"get"} path={"/loads"}></MethodEndpoint>
+
+<SecuritySchemes infoPath={"fms-api/v1/anscer-fms-api"}></SecuritySchemes>
+
+
+
+Retrieve a list of all loads.
+
+## Request
+
+<div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+A list of loads
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"_id"} required={false} schemaName={"uuid"} qualifierMessage={undefined} schema={{"type":"string","format":"uuid"}}></SchemaItem><SchemaItem collapsible={false} name={"name"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"setName"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"loadType"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"maxWeight"} required={false} schemaName={"number"} qualifierMessage={undefined} schema={{"type":"number"}}></SchemaItem><SchemaItem collapsible={false} name={"loadPositions"} required={false} schemaName={"string[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"properties"} required={false} schemaName={"object"} qualifierMessage={undefined} schema={{"type":"object"}}></SchemaItem><SchemaItem collapsible={false} name={"createdAt"} required={false} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem><SchemaItem collapsible={false} name={"updatedAt"} required={false} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"[\n  {\n    \"_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n    \"name\": \"string\",\n    \"setName\": \"string\",\n    \"loadType\": \"string\",\n    \"maxWeight\": 0,\n    \"loadPositions\": [\n      \"string\"\n    ],\n    \"properties\": {},\n    \"createdAt\": \"2024-12-03T13:25:44.870Z\",\n    \"updatedAt\": \"2024-12-03T13:25:44.870Z\"\n  }\n]"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"401"} value={"401"}><div>
+
+Unauthorized.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Authentication token not provided.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Authentication token not provided.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Forbidden.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"500"} value={"500"}><div>
+
+Internal Server Error
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>

@@ -1,0 +1,8 @@
+{
+  "label": "Missions",
+  "position": 13,
+  "link": {
+    "id": "anscer-anya/missions/index",
+    "type": "doc"
+  }
+}

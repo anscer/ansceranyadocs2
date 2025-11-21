@@ -1,0 +1,61 @@
+---
+id: quick-goal-waypoint
+title: "Quick Goal Waypoint"
+description: "The Quick Goal Waypoint request allows you to send a quick goal to the robot. This request takes in the waypoint's unique ID as a parameter, and will send the Robot to the desired waypoint."
+sidebar_label: "Quick Goal Waypoint"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVk1v40YM/SvE9NAW0NpJNwUKnep2t0VQdDfNBxZF4AMt0Rab0YwyH3YcQ/+94Ehy5MRdbINeerHkEefxkUM+zk7ZhhwGtua8VLm6j1zc/WpRf8JtY9kElamSfOG4ERuVq+uK4A+xAjGDwQ4c3UfyAVBru/GwtRGCBU+mBIQECyvZECyEisDZhQ0TuK7Y77cGvCMPbJLBpgf+2kM0fB8Jzt8BekBo0GFNgVwGaErYsNadH9l2KbiDk5I8Oyr3WBOVKUe+scaTV/lOfXdyIo/DCEfReUoZKKwJ8pbvFDaN5iIlbPqXF/udogesG03yWpP3uKIjKG3btpk6O+aw48wejDwMzGKw8LstKZNAGnJL62oIkqoQnXmKUQyNrW30UNuSJq+k+t/5H4I8fRnkjcEYKuv4kcrXEp3FUJEJvS0Ee0cmkW6cXXMpwAODty8Z/GLdgsuSzKvdFwV53xVXKltvoytIMrd8wh4YnB056GGHcF7aaF6diWNInePvj1XYuQnkDGq4IrcmB++ds+6Vro9iTeBCE3qC4LaAK2QDGgO5jlWbqYArr/LbrtbUPFP7LpblnTJYC/jQqeelyhQL9QZDldr2Pkovqzy4SJnyRUU1CrOwbWSnD47NSrXH9Or8HdjlgarstWmvRRDsRLXzTNUUKita2FgvzZ8I5GqarKZJyUTIprsnrq3KlE/Z6IKJTqtcVSE0+XS6q6wPbb5rrAvtFBue7sSQrWmPimvjbBmLVOCzi3PocFWm1ugYF7oTLsFMJ2RiLWnVtkCdFueCucSog8pHy8c8zT5c/fz+EmYf/pyNXIHYg5zHRLIptMeefjhRmTo7e3voKK1+sQfBTOB9Isb469ND5PXpFyH3SKne5nIaRXQctuk4Zg3/RlsRD5Xfzsefr6SKuoyOjfZFhWlRZUN5PrwREXuThGco0IqwJKekyNksbdrNQSfBOCT5IpDxd5bR5u0ybNAReKtjKgEZYStDpRRsjQZXlIYexmBrDATy41jmqkPjJbGi4IJR2ejJJ2s2ZZT+oCRUQ+4uP/708fqqn8HsD1z1ggrWrdDwY5IFP2VT8prLiNrDhkMFy6g1rNnzgjWHbXImmuKsBisnHSriZw4zIIMLzWYlX+vUicER1poN9RuORLW/p/gMHJWxkNhNRA0aF7a/C3AtxCn5Rq2BlksumEyxlTBHaWUPFa8qvQVfoJa26rhHH2zNj7KQdVcZ4XmQhaT/yNo64OGmwQ58QwUvuQBDVPoJfJL8jA44e4ZSoAHbBK758TNRN87KzOnPscaHvf1eJ9aS+E7enqdapsu+xdTp5GRy0os+Fqmp+7KWBrqKTWr1bKRePp9ON5vNBI0vyE0KW0+/6nffeJUpqpHF1nd7f3yyS+0gAlqjGTk6cnF83hS7p6H0v79r9ioS6CFMG41sRPNSenf9WLlViZzK1H6wqEzlozE4z3qxv1W73QI93TjdtrJ8H8mJwM2fZkOSu5K9vJcqX6L29Jn8fnPZT9Vv4V+NyX+IbBBNs03jSkf5pzJ1R9vD0d7O22zQTWHcGcj1qgmjrS+uJAfj+eLj1bVq278Bbv5zSw==
+sidebar_class_name: "post api-method"
+info_path: api/v1/anscer-anya-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Quick Goal Waypoint</h1>
+
+<MethodEndpoint method={"post"} path={"/robot/quickgoal/{waypointId}"}></MethodEndpoint>
+
+<SecuritySchemes infoPath={"api/v1/anscer-anya-api"}></SecuritySchemes>
+
+
+
+The Quick Goal Waypoint request allows you to send a quick goal to the robot. This request takes in the waypoint's unique ID as a parameter, and will send the Robot to the desired waypoint.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Path Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"waypointId","in":"path","required":true,"schema":{"type":"string"},"description":"The ID of the waypoint to send the robot to."}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+Quick Goal sent
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Quick Goal sent\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Quick Goal sent\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"400"} value={"400"}><div>
+
+Robot is not in Auto Mode, to perform this turn Robot to Autonomous mode.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Robot is not in Auto Mode, to perform this turn Robot to Autonomous mode.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Robot is not in Auto Mode, to perform this turn Robot to Autonomous mode.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"401"} value={"401"}><div>
+
+Unauthorized.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Authentication token not provided.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Authentication token not provided.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"403"} value={"403"}><div>
+
+Forbidden.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Access to this resource is forbidden.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"404"} value={"404"}><div>
+
+Resource not found.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Resource not found.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Resource not found.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"500"} value={"500"}><div>
+
+Internal Server Error
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>

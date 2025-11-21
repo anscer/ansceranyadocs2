@@ -1,0 +1,49 @@
+---
+id: update-alias
+title: "Update alias for calling stations"
+description: "Update the alias for calling stations based on the fleet graph."
+sidebar_label: "Update alias for calling stations"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVk1v4zYQ/SvE9KpYTtECC53qFikQFN0GcdJLYCzG0sjihhIZcmRHEPTfi6GUtZx4u9miJxvkzJuvN4/qwTryyNo21wVk0LoCmVZGY4AECgq5105uIYP7eKe4IoVioErrVY7G6GanAkeQoLYYqFC2iXalIWK18+iqBSTgKTjbBAqQ9fDjcik/pzFiZDVmUUACuW2YGhZDdM7oPEZJPwex7iHkFdUo/7hzBBnY7WfKGRJwXgpjPcb6pIuZUWCvmx0kUFpfI0vZrS5gSKDBmt4aDgm0gfxXL40d0wqzW/QeO0hAM9XhjNeQQGziudyxKLTgobk5qeIMhHPe7tHc0lOrPc2L3FprCBvJLzy235eZsfi+fk1Tv4t2b+2paWvIHuBAWxlJ1QWdo4HNIFR4ainwtzydzh9bJ1T01tmylKvacRcxAltP1+/LNPcklFrxv1oL7S5Y1xRnPrLw/S5DAqzZ0Ks9Gga5+ekc3X/FQt2OnVBFS4qt2qPRReyqIu+tD0qPuzR1TG1t0X17M+gZa2dib2sKAXeS1d9H7BK1oUKWcowC2UMPpSYjKhCZnswcP2JNSoeYg/BsAUNyNKcatTmxv5ITVbeSLikci1LRTmFReAphAcNm7MzP5zpz3bBsnFFr8nvy6kqy/I9ln8VaqBtDGEix7xTuUDfKIJNfxHnJKHEnXfniDRupkCsrJTsbosogV5BBqiebdJz7BU4CGmLAsbmtN5BBxeyyNO0rG3jIemc9Dyk6nfZiqG0zvNHdu4qU87Zo8zi51c21GnEhgT16jVsz6oNgxiZMyyO6ZOLhRjBLbI0w9nh8LtLq4/q3q1v1+5/rWSQl5kpoIZMHyXoe6MPyNMKH5XdAC1hEnRowB95fngLvL98DPAHFSW5kCHnrNXdxCiun/6Bu1crcHjbz67W8JWMj50ZH3YyH8PJIwPMFtlxdsH2kRuRUkqkIC/JRCXRT2ug9KcJpjm/KmF3roFAFW/IBPalgTRvnzhWyqsi4oDrbqhob3JH89dMza0u1p0rnhsJC3VU6xGagMfYwurBVkaiYszporqKszAKHLjDVoglfRgGXi+ViOe0d5nHqU/0Cvm5d5EIyY3fI0vRwOCywCTn5RW7r9IfJ+z5E/Ra1yCCMvr8c7WLfZLNqbGaBpu+Or39zvG5mf1SJ/+GjZRo/0zOnzqCOT2ost5/2/wFe9h9eXo1JATbJtJQP0PcS5N6bYZDjp5a8MHJz3OFIyOSFQ0LWR+qk0XlOjuOym3Zk4ivhG+bSdPPX+g6G4R/6l1+Z
+sidebar_class_name: "post api-method"
+info_path: fms-api/v1/anscer-fms-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Update alias for calling stations</h1>
+
+<MethodEndpoint method={"post"} path={"/internal/update-alias"}></MethodEndpoint>
+
+<SecuritySchemes infoPath={"fms-api/v1/anscer-fms-api"}></SecuritySchemes>
+
+
+
+Update the alias for calling stations based on the fleet graph.
+
+## Request
+
+<div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+Alias updated
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"_id"} required={false} schemaName={"uuid"} qualifierMessage={undefined} schema={{"type":"string","format":"uuid"}}></SchemaItem><SchemaItem collapsible={false} name={"name"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"username"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"locations"} required={false} schemaName={"string[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"type":"string"}}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>alias</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem name={"property name*"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}} collapsible={false} discriminator={false}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={false} name={"approvalRequired"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"sku"} required={false} schemaName={"string[]"} qualifierMessage={undefined} schema={{"type":"array","items":{"type":"string"}}}></SchemaItem><SchemaItem collapsible={false} name={"load"} required={false} schemaName={"uuid"} qualifierMessage={undefined} schema={{"type":"string","format":"uuid"}}></SchemaItem><SchemaItem collapsible={false} name={"stationType"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** [`web`, `physical`]"} schema={{"type":"string","enum":["web","physical"]}}></SchemaItem><SchemaItem collapsible={false} name={"requestType"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** [`pickup`, `dropoff`, `empty`]"} schema={{"type":"string","enum":["pickup","dropoff","empty"]}}></SchemaItem><SchemaItem collapsible={false} name={"storeId"} required={false} schemaName={"uuid"} qualifierMessage={undefined} schema={{"type":"string","format":"uuid"}}></SchemaItem><SchemaItem collapsible={false} name={"createdAt"} required={false} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem><SchemaItem collapsible={false} name={"updatedAt"} required={false} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"_id\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"name\": \"string\",\n  \"username\": \"string\",\n  \"locations\": [\n    \"string\"\n  ],\n  \"alias\": {},\n  \"approvalRequired\": true,\n  \"sku\": [\n    \"string\"\n  ],\n  \"load\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"stationType\": \"web\",\n  \"requestType\": \"pickup\",\n  \"storeId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\",\n  \"createdAt\": \"2024-12-03T13:25:44.980Z\",\n  \"updatedAt\": \"2024-12-03T13:25:44.980Z\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"400"} value={"400"}><div>
+
+Bad Request due to validation errors in the request body
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Validation failed.\",\n  \"errors\": [\n    {\n      \"field\": \"name\",\n      \"message\": \"Name is required.\"\n    },\n    {\n      \"field\": \"email\",\n      \"message\": \"Email must be a valid email address.\"\n    }\n  ]\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Validation failed.\",\n  \"errors\": [\n    {\n      \"field\": \"name\",\n      \"message\": \"Name is required.\"\n    },\n    {\n      \"field\": \"email\",\n      \"message\": \"Email must be a valid email address.\"\n    }\n  ]\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"500"} value={"500"}><div>
+
+Internal Server Error
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>

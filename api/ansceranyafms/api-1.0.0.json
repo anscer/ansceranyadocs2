@@ -1,0 +1,4267 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "ANSCER FMS API",
+		"description": "ANSCER FMS is a software solution that helps you manage your fleet of vehicles. This API allows you to interact with the ANSCER FMS system.",
+		"version": "1.0.0",
+		"contact": {
+			"name": "API Support",
+			"url": "https://www.anscer.com/#contactUs",
+			"email": "support@anscer.com"
+		}
+	},
+	"servers": [
+		{
+			"url": "http://{host}:{port}/api/{version}",
+			"description": "The production API server",
+			"variables": {
+				"host": {
+					"enum": ["localhost"],
+					"default": "localhost",
+					"description": "The ANSCER FMS API server host name."
+				},
+				"port": {
+					"enum": ["80"],
+					"default": "80",
+					"description": "The ANSCER FMS API server port."
+				},
+				"version": {
+					"enum": ["v1"],
+					"default": "v1",
+					"description": "The ANSCER FMS API version."
+				}
+			}
+		}
+	],
+	"security": [
+		{
+			"ApiKeyAuth": []
+		}
+	],
+	"paths": {
+		"/": {
+			"get": {
+				"security": [],
+				"operationId": "apiHome",
+				"summary": "API Home",
+				"description": "Home Route of ANSCER FMS API",
+				"responses": {
+					"200": {
+						"description": "Welcome to ANSCER ROBOTICS ANYA FMS 🤖 server"
+					}
+				},
+				"tags": ["Home"]
+			}
+		},
+		"/auth": {
+			"post": {
+				"operationId": "login",
+				"summary": "Login",
+				"description": "The Login request allows users to authenticate themselves with ANSCER FMS by providing their email address and password.",
+				"security": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Login"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "User logged in",
+						"headers": {
+							"x-auth-token": {
+								"description": "JWT token",
+								"schema": {
+									"type": "string"
+								}
+							}
+						},
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/LoggedInUser"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadLoginRequest"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Authentication"]
+			}
+		},
+		"/robots": {
+			"get": {
+				"operationId": "getAllRobots",
+				"summary": "Get a list of robots",
+				"description": "The Get All Robots request allows you to retrieve a list of all robots registered in ANSCER FMS.",
+				"responses": {
+					"200": {
+						"description": "A list of robots",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/Robot"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robots"]
+			},
+			"post": {
+				"operationId": "createRobot",
+				"summary": "Create a new robot",
+				"description": "The Create Robot request allows you to create a new robot in ANSCER FMS.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewRobot"
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Robot created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Robot"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"409": {
+						"$ref": "#/components/responses/RobotConflict"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robots"]
+			}
+		},
+		"/robots/{id}": {
+			"parameters": [
+				{
+					"name": "id",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the robot to retrieve, update or delete"
+				}
+			],
+			"get": {
+				"operationId": "getRobotById",
+				"summary": "Get a robot by ID",
+				"description": "The Get Robot request allows you to retrieve information about a specific robot in ANSCER FMS.",
+				"responses": {
+					"200": {
+						"description": "Robot details",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Robot"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robots"]
+			},
+			"put": {
+				"operationId": "updateRobot",
+				"summary": "Update a robot by ID",
+				"description": "The Update Robot request allows you to update information about a specific robot in ANSCER FMS.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateRobot"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Robot updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Robot"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robots"]
+			},
+			"delete": {
+				"operationId": "deleteRobot",
+				"summary": "Delete a robot by ID",
+				"description": "The Delete Robot request allows you to remove a robot from ANSCER FMS.",
+				"responses": {
+					"200": {
+						"description": "Robot deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Robot"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robots"]
+			}
+		},
+		"/calling-stations/auth": {
+			"post": {
+				"operationId": "authCallingStation",
+				"summary": "Authenticate Calling Station",
+				"description": "The Authenticate Calling Station request allows calling stations to authenticate themselves with ANSCER FMS by providing their username and password.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CallingStationAuth"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Calling Station authenticated",
+						"headers": {
+							"x-auth-token": {
+								"description": "JWT token",
+								"schema": {
+									"type": "string"
+								}
+							}
+						},
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/LoggedInStation"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadLoginRequest"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Calling Stations"]
+			}
+		},
+		"/calling-stations/auth/me": {
+			"get": {
+				"operationId": "callingStationProfile",
+				"summary": "Get Calling Station Profile",
+				"description": "The Get Calling Station Profile request allows authenticated calling stations to retrieve their profile information.",
+				"responses": {
+					"200": {
+						"description": "Calling Station profile",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CallingStation"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Calling Stations"]
+			}
+		},
+		"/calling-stations": {
+			"get": {
+				"operationId": "getAllCallingStations",
+				"summary": "Get a list of calling stations",
+				"description": "The Get All Calling Stations request allows you to retrieve a list of all calling stations registered in ANSCER FMS.",
+				"responses": {
+					"200": {
+						"description": "A list of calling stations",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/CallingStation"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Calling Stations"]
+			},
+			"post": {
+				"operationId": "createCallingStation",
+				"summary": "Create a new calling station",
+				"description": "The Create Calling Station request allows you to create a new calling station in ANSCER FMS.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewCallingStation"
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Calling Station created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CallingStation"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"409": {
+						"$ref": "#/components/responses/CallingStationConflict"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Calling Stations"]
+			}
+		},
+		"/calling-stations/{id}": {
+			"parameters": [
+				{
+					"name": "id",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the calling station to retrieve, update or delete"
+				}
+			],
+			"get": {
+				"operationId": "getCallingStationById",
+				"summary": "Get a calling station by ID",
+				"description": "The Get Calling Station request allows you to retrieve information about a specific calling station in ANSCER FMS.",
+				"responses": {
+					"200": {
+						"description": "Calling Station details",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CallingStation"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Calling Stations"]
+			},
+			"put": {
+				"operationId": "updateCallingStation",
+				"summary": "Update a calling station by ID",
+				"description": "The Update Calling Station request allows you to update information about a specific calling station in ANSCER FMS.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateCallingStation"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Calling Station updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CallingStation"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Calling Stations"]
+			},
+			"delete": {
+				"operationId": "deleteCallingStation",
+				"summary": "Delete a calling station by ID",
+				"description": "The Delete Calling Station request allows you to remove a calling station from ANSCER FMS.",
+				"responses": {
+					"200": {
+						"description": "Calling Station deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CallingStation"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Calling Stations"]
+			}
+		},
+		"/robot-requests": {
+			"get": {
+				"operationId": "getAllRobotRequests",
+				"summary": "Get all robot requests",
+				"description": "Retrieve a list of all robot requests.",
+				"responses": {
+					"200": {
+						"description": "A list of robot requests",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/RobotRequest"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robot Requests"]
+			},
+			"post": {
+				"operationId": "createRobotRequest",
+				"summary": "Create a new robot request",
+				"description": "Create a new robot request.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewRobotRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Robot request created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/RobotRequest"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"409": {
+						"$ref": "#/components/responses/RobotRequestConflict"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robot Requests"]
+			}
+		},
+		"/robot-requests/status": {
+			"get": {
+				"operationId": "robotRequestStatus",
+				"summary": "Get robot request status",
+				"description": "Retrieve the status of robot requests.",
+				"responses": {
+					"200": {
+						"description": "Robot request status",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/RobotRequest"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robot Requests"]
+			}
+		},
+		"/robot-requests/approve": {
+			"put": {
+				"operationId": "approveRobotRequest",
+				"summary": "Approve robot request",
+				"description": "Approve a robot request.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ApproveRobotRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Robot request approved",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/RobotRequest"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robot Requests"]
+			}
+		},
+		"/robot-requests/cancel/{id}": {
+			"delete": {
+				"operationId": "cancelRobotRequest",
+				"summary": "Cancel robot request",
+				"description": "Cancel a robot request by ID.",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"description": "The ID of the robot request to cancel"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Robot request cancelled",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/RobotRequest"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robot Requests"]
+			}
+		},
+		"/robot-requests/store": {
+			"post": {
+				"operationId": "sendRobotRequest",
+				"summary": "Send robot request from store",
+				"description": "Send a robot request from the store.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SendRobotRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Robot request sent",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/RobotRequest"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"409": {
+						"$ref": "#/components/responses/RobotRequestConflict"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robot Requests"]
+			}
+		},
+		"/robot-requests/aggregate": {
+			"get": {
+				"operationId": "robotRequestStatusAggregate",
+				"summary": "Get aggregated robot request status",
+				"description": "Retrieve aggregated status of robot requests.",
+				"responses": {
+					"200": {
+						"description": "Aggregated robot request status",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/RobotRequest"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robot Requests"]
+			}
+		},
+		"/robot-requests/{id}": {
+			"parameters": [
+				{
+					"name": "id",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the robot request to retrieve, update or delete"
+				}
+			],
+			"get": {
+				"operationId": "getRobotRequestById",
+				"summary": "Get a robot request by ID",
+				"description": "Retrieve information about a specific robot request.",
+				"responses": {
+					"200": {
+						"description": "Robot request details",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/RobotRequest"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robot Requests"]
+			},
+			"put": {
+				"operationId": "updateRobotRequest",
+				"summary": "Update a robot request by ID",
+				"description": "Update information about a specific robot request.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateRobotRequest"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Robot request updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/RobotRequest"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robot Requests"]
+			},
+			"delete": {
+				"operationId": "deleteRobotRequest",
+				"summary": "Delete a robot request by ID",
+				"description": "Delete a robot request.",
+				"responses": {
+					"200": {
+						"description": "Robot request deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/RobotRequest"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robot Requests"]
+			}
+		},
+		"/robot-requests/process/{id}": {
+			"parameters": [
+				{
+					"name": "id",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the robot request to retrieve, update or delete"
+				}
+			],
+			"put": {
+				"operationId": "updateRobotRequestStatus",
+				"summary": "Process a robot request by ID",
+				"description": "Update the status of a robot request.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateRobotRequestStatus"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Robot request status updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/RobotRequest"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Robot Requests"]
+			}
+		},
+		"/loads": {
+			"get": {
+				"operationId": "getAllLoads",
+				"summary": "Get all loads",
+				"description": "Retrieve a list of all loads.",
+				"responses": {
+					"200": {
+						"description": "A list of loads",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/Load"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Loads"]
+			},
+			"post": {
+				"operationId": "createLoad",
+				"summary": "Create a new load",
+				"description": "Create a new load.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewLoad"
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Load created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Load"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"409": {
+						"$ref": "#/components/responses/LoadConflict"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Loads"]
+			}
+		},
+		"/loads/{id}": {
+			"parameters": [
+				{
+					"name": "id",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the load to retrieve, update or delete"
+				}
+			],
+			"get": {
+				"operationId": "getLoadById",
+				"summary": "Get a load by ID",
+				"description": "Retrieve information about a specific load.",
+				"responses": {
+					"200": {
+						"description": "Load details",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Load"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Loads"]
+			},
+			"patch": {
+				"operationId": "patchLoad",
+				"summary": "Patch a load by ID",
+				"description": "Partially update information about a specific load.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateLoad"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Load patched",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Load"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Loads"]
+			},
+			"put": {
+				"operationId": "updateLoad",
+				"summary": "Update a load by ID",
+				"description": "Update information about a specific load.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateLoad"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Load updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Load"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Loads"]
+			},
+			"delete": {
+				"operationId": "deleteLoad",
+				"summary": "Delete a load by ID",
+				"description": "Delete a load.",
+				"responses": {
+					"200": {
+						"description": "Load deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Load"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Loads"]
+			}
+		},
+		"/mission-logs": {
+			"get": {
+				"operationId": "getAllMissionLogs",
+				"summary": "Get all mission logs",
+				"description": "Retrieve a list of all mission logs.",
+				"responses": {
+					"200": {
+						"description": "A list of mission logs",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/MissionLog"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Mission Logs"]
+			},
+			"post": {
+				"operationId": "createMissionLog",
+				"summary": "Create a new mission log",
+				"description": "Create a new mission log.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewMissionLog"
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Mission log created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/MissionLog"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"409": {
+						"$ref": "#/components/responses/MissionLogConflict"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Mission Logs"]
+			},
+			"put": {
+				"operationId": "updateMultipleMissionLog",
+				"summary": "Update multiple mission logs",
+				"description": "Update multiple mission logs.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateMultipleMissionLog"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Mission logs updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/MissionLog"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Mission Logs"]
+			}
+		},
+		"/mission-logs/old": {
+			"put": {
+				"operationId": "updateMultipleMissionLogOld",
+				"summary": "Update multiple mission logs (old)",
+				"description": "Update multiple mission logs using the old method.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateMultipleMissionLogOld"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Mission logs updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/MissionLog"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Mission Logs"]
+			}
+		},
+		"/mission-logs/{id}": {
+			"parameters": [
+				{
+					"name": "id",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the mission log to retrieve, update or delete"
+				}
+			],
+			"get": {
+				"operationId": "getMissionLogById",
+				"summary": "Get a mission log by ID",
+				"description": "Retrieve information about a specific mission log.",
+				"responses": {
+					"200": {
+						"description": "Mission log details",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/MissionLog"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Mission Logs"]
+			},
+			"put": {
+				"operationId": "updateMissionLog",
+				"summary": "Update a mission log by ID",
+				"description": "Update information about a specific mission log.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateMissionLog"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Mission log updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/MissionLog"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Mission Logs"]
+			},
+			"delete": {
+				"operationId": "deleteMissionLog",
+				"summary": "Delete a mission log by ID",
+				"description": "Delete a mission log.",
+				"responses": {
+					"200": {
+						"description": "Mission log deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/MissionLog"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Mission Logs"]
+			}
+		},
+		"/buffer-locations": {
+			"get": {
+				"operationId": "getAllBufferLocations",
+				"summary": "Get all buffer locations",
+				"description": "Retrieve a list of all buffer locations.",
+				"responses": {
+					"200": {
+						"description": "A list of buffer locations",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/BufferLocation"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Buffer Locations"]
+			},
+			"post": {
+				"operationId": "createBufferLocation",
+				"summary": "Create a new buffer location",
+				"description": "Create a new buffer location.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewBufferLocation"
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Buffer location created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BufferLocation"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"409": {
+						"$ref": "#/components/responses/BufferLocationConflict"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Buffer Locations"]
+			}
+		},
+		"/buffer-locations/{id}": {
+			"parameters": [
+				{
+					"name": "id",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the buffer location to retrieve, update or delete"
+				}
+			],
+			"get": {
+				"operationId": "getBufferLocationById",
+				"summary": "Get a buffer location by ID",
+				"description": "Retrieve information about a specific buffer location.",
+				"responses": {
+					"200": {
+						"description": "Buffer location details",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BufferLocation"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Buffer Locations"]
+			},
+			"put": {
+				"operationId": "updateBufferLocation",
+				"summary": "Update a buffer location by ID",
+				"description": "Update information about a specific buffer location.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateBufferLocation"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Buffer location updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BufferLocation"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Buffer Locations"]
+			},
+			"patch": {
+				"operationId": "patchBufferLocation",
+				"summary": "Patch a buffer location by ID",
+				"description": "Partially update information about a specific buffer location.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateBufferLocation"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Buffer location patched",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BufferLocation"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Buffer Locations"]
+			},
+			"delete": {
+				"operationId": "deleteBufferLocation",
+				"summary": "Delete a buffer location by ID",
+				"description": "Delete a buffer location.",
+				"responses": {
+					"200": {
+						"description": "Buffer location deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BufferLocation"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Buffer Locations"]
+			}
+		},
+		"/internal/update-alias": {
+			"post": {
+				"operationId": "updateAlias",
+				"summary": "Update alias for calling stations",
+				"description": "Update the alias for calling stations based on the fleet graph.",
+				"responses": {
+					"200": {
+						"description": "Alias updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "object",
+									"$ref": "#/components/schemas/updateAlias"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Internal"]
+			}
+		},
+		"/analytics/robot-success-rate": {
+			"get": {
+				"operationId": "getSuccessRateByRobot",
+				"summary": "Get success rate by robot",
+				"description": "Retrieve the success rate of robot requests by robot.",
+				"parameters": [
+					{
+						"name": "startDate",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"format": "date"
+						},
+						"description": "The start date for the date range filter."
+					},
+					{
+						"name": "endDate",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"format": "date"
+						},
+						"description": "The end date for the date range filter."
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success rate by robot",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/SuccessRateByRobot"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Analytics"]
+			}
+		},
+		"/analytics/robot-requests": {
+			"get": {
+				"operationId": "getRobotRequests",
+				"summary": "Get robot requests",
+				"description": "Retrieve robot requests within a date range.",
+				"parameters": [
+					{
+						"name": "startDate",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"format": "date"
+						},
+						"description": "The start date for the date range filter."
+					},
+					{
+						"name": "endDate",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"format": "date"
+						},
+						"description": "The end date for the date range filter."
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Robot requests within date range",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/RobotRequests"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Analytics"]
+			}
+		},
+		"/analytics/success-rate": {
+			"get": {
+				"operationId": "getRobotRequestsAndSuccessRate",
+				"summary": "Get robot requests and success rate",
+				"description": "Retrieve the total number of robot requests and the success rate.",
+				"parameters": [
+					{
+						"name": "startDate",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"format": "date"
+						},
+						"description": "The start date for the date range filter."
+					},
+					{
+						"name": "endDate",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"format": "date"
+						},
+						"description": "The end date for the date range filter."
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Robot requests and success rate",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/RobotRequestsAndSuccessRate"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Analytics"]
+			}
+		},
+		"/analytics/by-station": {
+			"get": {
+				"operationId": "getRobotRequestsByCallingStation",
+				"summary": "Get robot requests by calling station",
+				"description": "Retrieve robot requests grouped by calling station.",
+				"parameters": [
+					{
+						"name": "startDate",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"format": "date"
+						},
+						"description": "The start date for the date range filter."
+					},
+					{
+						"name": "endDate",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"format": "date"
+						},
+						"description": "The end date for the date range filter."
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Robot requests by calling station",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/RobotRequestsByCallingStation"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Analytics"]
+			}
+		},
+		"/analytics/most-active-robot": {
+			"get": {
+				"operationId": "getMostActiveRobot",
+				"summary": "Get the most active robot",
+				"description": "Retrieve the most active robot based on the number of requests.",
+				"parameters": [
+					{
+						"name": "startDate",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"format": "date"
+						},
+						"description": "The start date for the date range filter."
+					},
+					{
+						"name": "endDate",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"format": "date"
+						},
+						"description": "The end date for the date range filter."
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Most active robot",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/MostActiveRobot"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Analytics"]
+			}
+		},
+		"/graphs": {
+			"get": {
+				"operationId": "getAllGraphs",
+				"summary": "Get all graphs",
+				"description": "Retrieve a list of all graphs.",
+				"responses": {
+					"200": {
+						"description": "A list of graphs",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/Graph"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Graphs"]
+			},
+			"post": {
+				"operationId": "createGraph",
+				"summary": "Create a new graph",
+				"description": "Create a new graph.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewGraph"
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Graph created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Graph"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"409": {
+						"$ref": "#/components/responses/GraphConflict"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Graphs"]
+			}
+		},
+		"/stores/auth": {
+			"post": {
+				"operationId": "authStore",
+				"summary": "Authenticate store",
+				"description": "Authenticate a store and return a token.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/StoreAuth"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Store authenticated",
+						"headers": {
+							"x-auth-token": {
+								"description": "JWT token",
+								"schema": {
+									"type": "string"
+								}
+							}
+						},
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/LoggedInStore"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadLoginRequest"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Stores"]
+			}
+		},
+		"/stores": {
+			"get": {
+				"operationId": "getAllStores",
+				"summary": "Get all stores",
+				"description": "Retrieve a list of all stores.",
+				"responses": {
+					"200": {
+						"description": "A list of stores",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/Store"
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Stores"]
+			},
+			"post": {
+				"operationId": "createStore",
+				"summary": "Create a new store",
+				"description": "Create a new store.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/NewStore"
+							}
+						}
+					}
+				},
+				"responses": {
+					"201": {
+						"description": "Store created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Store"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"409": {
+						"$ref": "#/components/responses/StoreConflict"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Stores"]
+			}
+		},
+		"/stores/{storeId}/buffer-locations": {
+			"parameters": [
+				{
+					"name": "storeId",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the store to update buffer locations"
+				}
+			],
+			"post": {
+				"operationId": "updateBufferLocations",
+				"summary": "Update buffer locations",
+				"description": "Update the buffer locations for a store.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateBufferLocations"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Buffer locations updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Store"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Stores"]
+			},
+			"patch": {
+				"operationId": "addBufferLocation",
+				"summary": "Add buffer location",
+				"description": "Add a buffer location to a store.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AddBufferLocation"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Buffer location added",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Store"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Stores"]
+			},
+			"delete": {
+				"operationId": "removeBufferLocation",
+				"summary": "Remove buffer location",
+				"description": "Remove a buffer location from a store.",
+				"responses": {
+					"200": {
+						"description": "Buffer location removed",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Store"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Stores"]
+			}
+		},
+		"/stores/{storeId}/calling-stations": {
+			"parameters": [
+				{
+					"name": "storeId",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the store to update calling stations"
+				}
+			],
+			"post": {
+				"operationId": "updateCallingStations",
+				"summary": "Update calling stations",
+				"description": "Update the calling stations for a store.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateCallingStations"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Calling stations updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Store"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Stores"]
+			},
+			"patch": {
+				"operationId": "addCallingStation",
+				"summary": "Add calling station",
+				"description": "Add a calling station to a store.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AddCallingStation"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Calling station added",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Store"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Stores"]
+			},
+			"delete": {
+				"operationId": "removeCallingStation",
+				"summary": "Remove calling station",
+				"description": "Remove a calling station from a store.",
+				"responses": {
+					"200": {
+						"description": "Calling station removed",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Store"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Stores"]
+			}
+		},
+		"/stores/{id}": {
+			"parameters": [
+				{
+					"name": "id",
+					"in": "path",
+					"required": true,
+					"schema": {
+						"type": "string"
+					},
+					"description": "The ID of the store to retrieve, update or delete"
+				}
+			],
+			"get": {
+				"operationId": "getStoreById",
+				"summary": "Get a store by ID",
+				"description": "Retrieve information about a specific store.",
+				"responses": {
+					"200": {
+						"description": "Store details",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Store"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Stores"]
+			},
+			"patch": {
+				"operationId": "patchStore",
+				"summary": "Patch a store by ID",
+				"description": "Partially update information about a specific store.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateStore"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Store patched",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Store"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Stores"]
+			},
+			"put": {
+				"operationId": "updateStore",
+				"summary": "Update a store by ID",
+				"description": "Update information about a specific store.",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateStore"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Store updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Store"
+								}
+							}
+						}
+					},
+					"400": {
+						"$ref": "#/components/responses/BadRequestValidation"
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Stores"]
+			},
+			"delete": {
+				"operationId": "deleteStore",
+				"summary": "Delete a store by ID",
+				"description": "Delete a store.",
+				"responses": {
+					"200": {
+						"description": "Store deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Store"
+								}
+							}
+						}
+					},
+					"401": {
+						"$ref": "#/components/responses/UnauthorizedError"
+					},
+					"403": {
+						"$ref": "#/components/responses/ForbiddenError"
+					},
+					"404": {
+						"$ref": "#/components/responses/NotFound"
+					},
+					"500": {
+						"$ref": "#/components/responses/InternalServerError"
+					}
+				},
+				"tags": ["Stores"]
+			}
+		}
+	},
+	"components": {
+		"responses": {
+			"ForbiddenError": {
+				"description": "Forbidden.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "Access to this resource is forbidden."
+						}
+					}
+				}
+			},
+			"InternalServerError": {
+				"description": "Internal Server Error",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "Internal Server Error. Please try again later."
+						}
+					}
+				}
+			},
+			"BadRequestValidation": {
+				"description": "Bad Request due to validation errors in the request body",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "Validation failed.",
+							"errors": [
+								{
+									"field": "name",
+									"message": "Name is required."
+								},
+								{
+									"field": "email",
+									"message": "Email must be a valid email address."
+								}
+							]
+						}
+					}
+				}
+			},
+			"BadLoginRequest": {
+				"description": "Bad Request due to validation errors in the request body",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "Validation failed.",
+							"errors": [
+								{
+									"field": "email",
+									"message": "Email must be a valid email address."
+								},
+								{
+									"field": "password",
+									"message": "Password must be 6 characters or longer."
+								}
+							]
+						}
+					}
+				}
+			},
+			"UnauthorizedError": {
+				"description": "Unauthorized.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "Authentication token not provided."
+						}
+					}
+				}
+			},
+			"NotFound": {
+				"description": "Resource not found.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "Resource not found."
+						}
+					}
+				}
+			},
+			"RobotConflict": {
+				"description": "A robot with the given serial number already exists.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "A robot with the given serial number already exists."
+						}
+					}
+				}
+			},
+			"CallingStationConflict": {
+				"description": "A calling station with the given username already exists.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "A calling station with the given username already exists."
+						}
+					}
+				}
+			},
+			"RobotRequestConflict": {
+				"description": "A robot request with the given details already exists.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "A robot request with the given details already exists."
+						}
+					}
+				}
+			},
+			"LoadConflict": {
+				"description": "A load with the given details already exists.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "A load with the given details already exists."
+						}
+					}
+				}
+			},
+			"MissionLogConflict": {
+				"description": "A mission log with the given details already exists.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "A mission log with the given details already exists."
+						}
+					}
+				}
+			},
+			"BufferLocationConflict": {
+				"description": "A buffer location with the given details already exists.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "A buffer location with the given details already exists."
+						}
+					}
+				}
+			},
+			"GraphConflict": {
+				"description": "A graph with the given details already exists.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "A graph with the given details already exists."
+						}
+					}
+				}
+			},
+			"StoreConflict": {
+				"description": "A store with the given details already exists.",
+				"content": {
+					"application/json": {
+						"example": {
+							"message": "A store with the given details already exists."
+						}
+					}
+				}
+			}
+		},
+		"securitySchemes": {
+			"ApiKeyAuth": {
+				"type": "apiKey",
+				"name": "x-auth-token",
+				"in": "header"
+			}
+		},
+		"schemas": {
+			"Login": {
+				"type": "object",
+				"required": ["email", "password"],
+				"properties": {
+					"email": {
+						"type": "string",
+						"minLength": 5,
+						"maxLength": 255,
+						"format": "email"
+					},
+					"password": {
+						"type": "string",
+						"minLength": 6,
+						"maxLength": 255
+					}
+				}
+			},
+			"LoggedInUser": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string",
+						"minLength": 3,
+						"maxLength": 50
+					},
+					"email": {
+						"type": "string",
+						"minLength": 5,
+						"maxLength": 255,
+						"format": "email"
+					},
+					"role": {
+						"type": "string"
+					},
+					"token": {
+						"type": "string",
+						"description": "JWT token"
+					}
+				}
+			},
+			"Robot": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"manufacturer": {
+						"type": "string"
+					},
+					"serialNumber": {
+						"type": "string"
+					},
+					"robotStatus": {
+						"type": "string",
+						"enum": ["pending", "active", "inactive"]
+					},
+					"factSheet": {
+						"type": "object"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				}
+			},
+			"NewRobot": {
+				"type": "object",
+				"required": ["manufacturer", "serialNumber"],
+				"properties": {
+					"manufacturer": {
+						"type": "string"
+					},
+					"serialNumber": {
+						"type": "string"
+					}
+				}
+			},
+			"UpdateRobot": {
+				"type": "object",
+				"properties": {
+					"factSheet": {
+						"type": "object"
+					}
+				}
+			},
+			"CallingStation": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string",
+						"minLength": 3,
+						"maxLength": 50
+					},
+					"username": {
+						"type": "string",
+						"minLength": 5,
+						"maxLength": 50
+					},
+					"locations": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"approvalRequired": {
+						"type": "boolean"
+					},
+					"sku": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"load": {
+						"type": "string"
+					},
+					"alias": {
+						"type": "object"
+					},
+					"stationType": {
+						"type": "string",
+						"enum": ["web", "physical"]
+					},
+					"requestType": {
+						"type": "string",
+						"enum": ["pickup", "dropoff", "empty"]
+					},
+					"storeId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				}
+			},
+			"LoggedInStation": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string",
+						"minLength": 3,
+						"maxLength": 50
+					},
+					"username": {
+						"type": "string",
+						"minLength": 5,
+						"maxLength": 50
+					},
+					"locations": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"approvalRequired": {
+						"type": "boolean"
+					},
+					"sku": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"load": {
+						"type": "string"
+					},
+					"alias": {
+						"type": "object"
+					},
+					"stationType": {
+						"type": "string",
+						"enum": ["web", "physical"]
+					},
+					"requestType": {
+						"type": "string",
+						"enum": ["pickup", "dropoff", "empty"]
+					},
+					"storeId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"token": {
+						"type": "string",
+						"description": "JWT token"
+					}
+				}
+			},
+			"NewCallingStation": {
+				"type": "object",
+				"required": ["name", "username", "password", "locations", "storeId"],
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"username": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					},
+					"locations": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"storeId": {
+						"type": "string",
+						"format": "uuid"
+					}
+				}
+			},
+			"UpdateCallingStation": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"locations": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"approvalRequired": {
+						"type": "boolean"
+					},
+					"sku": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"load": {
+						"type": "string"
+					},
+					"alias": {
+						"type": "object"
+					},
+					"stationType": {
+						"type": "string",
+						"enum": ["web", "physical"]
+					},
+					"requestType": {
+						"type": "string",
+						"enum": ["pickup", "dropoff", "empty"]
+					}
+				}
+			},
+			"CallingStationAuth": {
+				"type": "object",
+				"required": ["username", "password"],
+				"properties": {
+					"username": {
+						"type": "string",
+						"minLength": 5,
+						"maxLength": 50
+					},
+					"password": {
+						"type": "string",
+						"minLength": 6,
+						"maxLength": 16
+					}
+				}
+			},
+			"RobotRequest": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"stationId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"locationId": {
+						"type": "string"
+					},
+					"missionLogId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"assignedRobot": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"load": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"requested",
+							"processing",
+							"approved",
+							"initiated",
+							"completed",
+							"aborted",
+							"cancelled"
+						]
+					},
+					"sku": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"requestType": {
+						"type": "string",
+						"enum": ["pickup", "dropoff", "empty"]
+					},
+					"trolleyCount": {
+						"type": "number"
+					},
+					"finishedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"processedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"approvedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"initiatedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"bufferId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"properties": {
+						"type": "object"
+					},
+					"storeId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"from": {
+						"type": "string",
+						"enum": ["station", "store"]
+					},
+					"message": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				}
+			},
+			"NewRobotRequest": {
+				"type": "object",
+				"required": ["stationId", "locationId", "requestType"],
+				"properties": {
+					"stationId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"locationId": {
+						"type": "string"
+					},
+					"requestType": {
+						"type": "string",
+						"enum": ["pickup", "dropoff", "empty"]
+					},
+					"load": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"trolleyCount": {
+						"type": "number"
+					},
+					"properties": {
+						"type": "object"
+					},
+					"storeId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"from": {
+						"type": "string",
+						"enum": ["station", "store"]
+					},
+					"message": {
+						"type": "string"
+					}
+				}
+			},
+			"SendRobotRequest": {
+				"type": "object",
+				"required": ["storeId", "load", "bufferId"],
+				"properties": {
+					"storeId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"stationId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"locationId": {
+						"type": "string"
+					},
+					"load": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"requestType": {
+						"type": "string",
+						"enum": ["pickup", "dropoff", "empty"]
+					},
+					"bufferId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"from": {
+						"type": "string",
+						"enum": ["store"]
+					},
+					"sku": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"trolleyCount": {
+						"type": "number"
+					}
+				}
+			},
+			"ApproveRobotRequest": {
+				"type": "object",
+				"required": ["bufferId", "robotRequests"],
+				"properties": {
+					"bufferId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"robotRequests": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"type": "string",
+									"format": "uuid"
+								},
+								"slotId": {
+									"type": "string"
+								},
+								"slotName": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"loadId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"stationId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"locationId": {
+						"type": "string"
+					}
+				}
+			},
+			"UpdateRobotRequest": {
+				"type": "object",
+				"properties": {
+					"status": {
+						"type": "string",
+						"enum": [
+							"requested",
+							"processing",
+							"approved",
+							"initiated",
+							"completed",
+							"aborted",
+							"cancelled"
+						]
+					},
+					"assignedRobot": {
+						"type": "string",
+						"format": "uuid"
+					}
+				}
+			},
+			"UpdateRobotRequestStatus": {
+				"type": "object",
+				"required": ["status"],
+				"properties": {
+					"status": {
+						"type": "string",
+						"enum": [
+							"requested",
+							"processing",
+							"approved",
+							"initiated",
+							"completed",
+							"aborted",
+							"cancelled"
+						]
+					}
+				}
+			},
+			"Load": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string"
+					},
+					"setName": {
+						"type": "string"
+					},
+					"loadType": {
+						"type": "string"
+					},
+					"maxWeight": {
+						"type": "number"
+					},
+					"loadPositions": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"properties": {
+						"type": "object"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				}
+			},
+			"NewLoad": {
+				"type": "object",
+				"required": ["setName", "loadType", "maxWeight", "loadPositions"],
+				"properties": {
+					"setName": {
+						"type": "string"
+					},
+					"loadType": {
+						"type": "string"
+					},
+					"maxWeight": {
+						"type": "number"
+					},
+					"loadPositions": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"properties": {
+						"type": "object"
+					}
+				}
+			},
+			"UpdateLoad": {
+				"type": "object",
+				"properties": {
+					"setName": {
+						"type": "string"
+					},
+					"loadType": {
+						"type": "string"
+					},
+					"maxWeight": {
+						"type": "number"
+					},
+					"loadPositions": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"properties": {
+						"type": "object"
+					}
+				}
+			},
+			"MissionLog": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"missionId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"robotRequestId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"startedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"completedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"status": {
+						"type": "string",
+						"enum": ["pending", "active", "completed", "aborted", "cancelled"]
+					},
+					"completionPercentage": {
+						"type": "number"
+					},
+					"progress": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"state": {
+									"type": "string"
+								},
+								"startedAt": {
+									"type": "string",
+									"format": "date-time"
+								},
+								"completedAt": {
+									"type": "string",
+									"format": "date-time"
+								},
+								"message": {
+									"type": "string"
+								},
+								"completionPercentage": {
+									"type": "number"
+								}
+							}
+						}
+					},
+					"type": {
+						"type": "string",
+						"enum": ["robotRequest", "mission"]
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				}
+			},
+			"NewMissionLog": {
+				"type": "object",
+				"required": ["type"],
+				"properties": {
+					"missionId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"robotRequestId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"type": {
+						"type": "string",
+						"enum": ["robotRequest", "mission"]
+					}
+				}
+			},
+			"UpdateMissionLog": {
+				"type": "object",
+				"properties": {
+					"status": {
+						"type": "string",
+						"enum": ["completed", "aborted", "cancelled"]
+					},
+					"completionPercentage": {
+						"type": "number"
+					},
+					"state": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					},
+					"robotId": {
+						"type": "string",
+						"format": "uuid"
+					}
+				}
+			},
+			"UpdateMultipleMissionLog": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"transportOrderId": {
+							"type": "string",
+							"format": "uuid"
+						},
+						"status": {
+							"type": "string",
+							"enum": ["completed", "aborted", "cancelled"]
+						},
+						"completionPercentage": {
+							"type": "number"
+						},
+						"state": {
+							"type": "string"
+						},
+						"message": {
+							"type": "string"
+						},
+						"robotId": {
+							"type": "string",
+							"format": "uuid"
+						}
+					}
+				}
+			},
+			"UpdateMultipleMissionLogOld": {
+				"type": "object",
+				"properties": {
+					"ids": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					},
+					"status": {
+						"type": "string",
+						"enum": ["completed", "aborted", "cancelled"]
+					},
+					"completionPercentage": {
+						"type": "number"
+					},
+					"state": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					},
+					"robotId": {
+						"type": "string",
+						"format": "uuid"
+					}
+				}
+			},
+			"BufferLocation": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string"
+					},
+					"location": {
+						"type": "string"
+					},
+					"type": {
+						"type": "string",
+						"enum": ["pickup", "dropoff"]
+					},
+					"properties": {
+						"type": "object"
+					},
+					"loads": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					},
+					"storeId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				}
+			},
+			"NewBufferLocation": {
+				"type": "object",
+				"required": ["name", "location", "storeId"],
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"location": {
+						"type": "string"
+					},
+					"type": {
+						"type": "string",
+						"enum": ["pickup", "dropoff"]
+					},
+					"properties": {
+						"type": "object"
+					},
+					"loads": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					},
+					"storeId": {
+						"type": "string",
+						"format": "uuid"
+					}
+				}
+			},
+			"UpdateBufferLocation": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"location": {
+						"type": "string"
+					},
+					"type": {
+						"type": "string",
+						"enum": ["pickup", "dropoff"]
+					},
+					"properties": {
+						"type": "object"
+					},
+					"loads": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					},
+					"storeId": {
+						"type": "string",
+						"format": "uuid"
+					}
+				}
+			},
+			"updateAlias": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string"
+					},
+					"username": {
+						"type": "string"
+					},
+					"locations": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"alias": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "string"
+						}
+					},
+					"approvalRequired": {
+						"type": "boolean"
+					},
+					"sku": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"load": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"stationType": {
+						"type": "string",
+						"enum": ["web", "physical"]
+					},
+					"requestType": {
+						"type": "string",
+						"enum": ["pickup", "dropoff", "empty"]
+					},
+					"storeId": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				}
+			},
+			"SuccessRateByRobot": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"robotName": {
+						"type": "string"
+					},
+					"totalRequests": {
+						"type": "number"
+					},
+					"successfulRequests": {
+						"type": "number"
+					},
+					"successRate": {
+						"type": "number"
+					}
+				}
+			},
+			"RobotRequests": {
+				"type": "object",
+				"properties": {
+					"list": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"_id": {
+									"type": "string",
+									"format": "date-time"
+								},
+								"t": {
+									"type": "number"
+								},
+								"s": {
+									"type": "number"
+								}
+							}
+						}
+					},
+					"granularity": {
+						"type": "string",
+						"enum": ["day", "month", "hour", "minute"]
+					}
+				}
+			},
+			"RobotRequestsAndSuccessRate": {
+				"type": "object",
+				"properties": {
+					"totalRequests": {
+						"type": "number"
+					},
+					"successfulRequests": {
+						"type": "number"
+					},
+					"successRate": {
+						"type": "number"
+					}
+				}
+			},
+			"RobotRequestsByCallingStation": {
+				"type": "object",
+				"properties": {
+					"stationName": {
+						"type": "string"
+					},
+					"totalRequests": {
+						"type": "number"
+					},
+					"successfulRequests": {
+						"type": "number"
+					}
+				}
+			},
+			"MostActiveRobot": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"robotName": {
+						"type": "string"
+					},
+					"totalRequests": {
+						"type": "number"
+					}
+				}
+			},
+			"Graph": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string"
+					},
+					"nodes": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"type": "number"
+								},
+								"name": {
+									"type": "string"
+								},
+								"type": {
+									"type": "string"
+								},
+								"orientation": {
+									"type": "boolean"
+								},
+								"_id": {
+									"type": "string",
+									"format": "uuid"
+								},
+								"createdAt": {
+									"type": "string",
+									"format": "date-time"
+								},
+								"updatedAt": {
+									"type": "string",
+									"format": "date-time"
+								}
+							}
+						}
+					},
+					"edges": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"type": "number"
+								},
+								"name": {
+									"type": "string"
+								},
+								"orientation": {
+									"type": "boolean"
+								},
+								"bidirectional": {
+									"type": "boolean"
+								},
+								"type": {
+									"type": "string"
+								},
+								"direction": {
+									"type": "string"
+								},
+								"weight": {
+									"type": "number"
+								},
+								"source": {
+									"type": "number"
+								},
+								"target": {
+									"type": "number"
+								},
+								"_id": {
+									"type": "string",
+									"format": "uuid"
+								},
+								"createdAt": {
+									"type": "string",
+									"format": "date-time"
+								},
+								"updatedAt": {
+									"type": "string",
+									"format": "date-time"
+								}
+							}
+						}
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				}
+			},
+			"NewGraph": {
+				"type": "object",
+				"required": ["name", "nodes", "edges"],
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"nodes": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"type": "number"
+								},
+								"name": {
+									"type": "string"
+								},
+								"type": {
+									"type": "string"
+								},
+								"orientation": {
+									"type": "boolean"
+								},
+								"pose": {
+									"type": "object"
+								}
+							}
+						}
+					},
+					"edges": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"type": "number"
+								},
+								"name": {
+									"type": "string"
+								},
+								"type": {
+									"type": "string"
+								},
+								"orientation": {
+									"type": "boolean"
+								},
+								"pose": {
+									"type": "object"
+								},
+								"bidirectional": {
+									"type": "boolean"
+								},
+								"weight": {
+									"type": "number"
+								},
+								"source": {
+									"type": "number"
+								},
+								"target": {
+									"type": "number"
+								}
+							}
+						}
+					}
+				}
+			},
+			"Store": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string"
+					},
+					"username": {
+						"type": "string"
+					},
+					"bufferLocations": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					},
+					"callingStations": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					},
+					"properties": {
+						"type": "object"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				}
+			},
+			"LoggedInStore": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string",
+						"format": "uuid"
+					},
+					"name": {
+						"type": "string"
+					},
+					"username": {
+						"type": "string"
+					},
+					"bufferLocations": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					},
+					"callingStations": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					},
+					"properties": {
+						"type": "object"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"token": {
+						"type": "string",
+						"description": "JWT token"
+					}
+				}
+			},
+			"NewStore": {
+				"type": "object",
+				"required": ["name", "username", "password"],
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"username": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					},
+					"bufferLocations": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					},
+					"callingStations": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					},
+					"properties": {
+						"type": "object"
+					}
+				}
+			},
+			"UpdateStore": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"bufferLocations": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					},
+					"callingStations": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					},
+					"properties": {
+						"type": "object"
+					}
+				}
+			},
+			"StoreAuth": {
+				"type": "object",
+				"required": ["username", "password"],
+				"properties": {
+					"username": {
+						"type": "string",
+						"minLength": 5,
+						"maxLength": 50
+					},
+					"password": {
+						"type": "string",
+						"minLength": 6,
+						"maxLength": 16
+					}
+				}
+			},
+			"UpdateBufferLocations": {
+				"type": "object",
+				"required": ["bufferLocations"],
+				"properties": {
+					"bufferLocations": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					}
+				}
+			},
+			"AddBufferLocation": {
+				"type": "object",
+				"required": ["bufferLocationId"],
+				"properties": {
+					"bufferLocationId": {
+						"type": "string",
+						"format": "uuid"
+					}
+				}
+			},
+			"RemoveBufferLocation": {
+				"type": "object",
+				"required": ["bufferLocationId"],
+				"properties": {
+					"bufferLocationId": {
+						"type": "string",
+						"format": "uuid"
+					}
+				}
+			},
+			"UpdateCallingStations": {
+				"type": "object",
+				"required": ["callingStations"],
+				"properties": {
+					"callingStations": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"format": "uuid"
+						}
+					}
+				}
+			},
+			"AddCallingStation": {
+				"type": "object",
+				"required": ["callingStationId"],
+				"properties": {
+					"callingStationId": {
+						"type": "string",
+						"format": "uuid"
+					}
+				}
+			},
+			"RemoveCallingStation": {
+				"type": "object",
+				"required": ["callingStationId"],
+				"properties": {
+					"callingStationId": {
+						"type": "string",
+						"format": "uuid"
+					}
+				}
+			}
+		}
+	}
+}

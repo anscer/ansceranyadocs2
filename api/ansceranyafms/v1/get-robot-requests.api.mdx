@@ -1,0 +1,49 @@
+---
+id: get-robot-requests
+title: "Get robot requests"
+description: "Retrieve robot requests within a date range."
+sidebar_label: "Get robot requests"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1VlFv4zYM/isC9+rG6bABBz8t27pDMexwaHv3EgQDY9Ox7mTJJ9FJA8P/faDs1G6bW9sBe2qjkB8/kfy+qAPXkEfWzl4XkMGO+MZtHd/Qt5YCB0igoJB73UgIZHBD7DXtSXkJU36MUwfNlbYKVYFMyqPd0QISaNBjTUw+QLbuwGJNkEFg9Pw7MkECWlC/teSPkIDAaU8FZCWaQAmEvKIaIeuAj82Q6rXdQQKl8zUyZCAFoX/K864iFcsMhErnFVc0Y6dKbZj8AvrkgRfZ4v9nRbZ4mdNGqobG2UBB6vy4XMqfJ7M4O4IJDhLInWWyLLnYNEbncdTplyAA3fOLuO0XylkG52UxWA/ljQ48i0LvURqjmerwcvbfunixVxes69iweR3b1lvychrOnPZ9n8DOo20Nes3HczXItjVkaygi39pZriCByrVePmrbMsFGcFizoVNPH7Z/qPHTueb/ioUa41TRkmKn9mh0ERusyHvng9I2Tngckdq64vjyUOge60bIdFBTCLgTXp8n7BK1oULUNVSJyio1GRFw3ORklvgBa1I6qNMSDwt/CqcatXkUfyUnqm6FLikcLqVinMKi8BSC7OfQmZ/PdebaMnmLRt2S35NXV8LyP177LNZCfTSEgRT7o8IdaqsMDroZaDHupCuwsmiOrPMAG7kiV270uOhMXEEGKZ5i0uhoF35yvhBrDv1tvYEMKuYmS9OucoH7rGuc5z7FRqedBGpn+2eGKZJvvCvaPA5v9fFaDbiQwB69xq0ZVCKYsQ/jyhqXo4mHG8EssTUilun4XKXVh9vfrm7UH3/dziopCVeyGTJ8ENbzQu+Wjyu8W74BWsAi6tiAOfD+8jHw/vI1wCNQHOZGhpC3g7rXHawa/ScdV62Mbr2Zf30rTjY0ch40WVY8hORk9fcX2HJ1we4r2ZPfV4RFNBb5XLqYPdrCY47PrjH7WgeFKriSD+hJBWfaOHeukFVFpgnq6FpVo8Udyb9elYaIlSvVniqdGwoLdVfpEJuBxrjDkMJOaVED5hytPjrLrHA4BqZabOFhFHC5WC6Wo/Qwj1Mf7y/gt20TdyGZbXfI0vRwOCzQhpz8Ind1+sOY/Uk0MRhGBmHI/WWKi31rXOAa7azQe+Inb4Wn3esmZ3jr82IcLtM9p41BbWUT42W6UeBreBC4/JI/lvgmGVW3hq7bYqBP3vS9HA8//bJyhQ4i0enH/7vcX//k+A7xr3R88jjao2klLnr225i85pnxrzymx9DEYjN5VhRgctKMdGpIW+U5NTzLeub1/dyM31/dQd//Az3Bms8=
+sidebar_class_name: "get api-method"
+info_path: fms-api/v1/anscer-fms-api
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Get robot requests</h1>
+
+<MethodEndpoint method={"get"} path={"/analytics/robot-requests"}></MethodEndpoint>
+
+<SecuritySchemes infoPath={"fms-api/v1/anscer-fms-api"}></SecuritySchemes>
+
+
+
+Retrieve robot requests within a date range.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"startDate","in":"query","required":false,"schema":{"type":"string","format":"date"},"description":"The start date for the date range filter."}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"name":"endDate","in":"query","required":false,"schema":{"type":"string","format":"date"},"description":"The end date for the date range filter."}}></ParamsItem></ul></div></details><div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+Robot requests within date range
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>list</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"_id"} required={false} schemaName={"date-time"} qualifierMessage={undefined} schema={{"type":"string","format":"date-time"}}></SchemaItem><SchemaItem collapsible={false} name={"t"} required={false} schemaName={"number"} qualifierMessage={undefined} schema={{"type":"number"}}></SchemaItem><SchemaItem collapsible={false} name={"s"} required={false} schemaName={"number"} qualifierMessage={undefined} schema={{"type":"number"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={false} name={"granularity"} required={false} schemaName={"string"} qualifierMessage={"**Possible values:** [`day`, `month`, `hour`, `minute`]"} schema={{"type":"string","enum":["day","month","hour","minute"]}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"list\": [\n    {\n      \"_id\": \"2024-12-03T13:25:44.998Z\",\n      \"t\": 0,\n      \"s\": 0\n    }\n  ],\n  \"granularity\": \"day\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"400"} value={"400"}><div>
+
+Bad Request due to validation errors in the request body
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Validation failed.\",\n  \"errors\": [\n    {\n      \"field\": \"name\",\n      \"message\": \"Name is required.\"\n    },\n    {\n      \"field\": \"email\",\n      \"message\": \"Email must be a valid email address.\"\n    }\n  ]\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Validation failed.\",\n  \"errors\": [\n    {\n      \"field\": \"name\",\n      \"message\": \"Name is required.\"\n    },\n    {\n      \"field\": \"email\",\n      \"message\": \"Email must be a valid email address.\"\n    }\n  ]\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"500"} value={"500"}><div>
+
+Internal Server Error
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}>any</ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example"} value={"Example"}><ResponseSamples responseExample={"{\n  \"message\": \"Internal Server Error. Please try again later.\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>

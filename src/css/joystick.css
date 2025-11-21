@@ -1,0 +1,123 @@
+.message {
+  position: absolute;
+  text-align: center;
+  z-index: 1;
+  padding: 20px;
+  backdrop-filter: blur(7px);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  width: 100%;
+  justify-content: center;
+}
+.joystick-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+.joystick {
+  display: flex;
+  position: relative;
+  margin: 30px;
+}
+.joystick p {
+  position: absolute;
+  bottom: -40px;
+  margin: 0;
+  left: -25%;
+  width: 150%;
+  text-align: center;
+}
+.joystick * {
+  user-select: none;
+}
+.joystick.auto img {
+  filter: grayscale(1);
+  -webkit-filter: grayscale(1);
+}
+.joystick.auto::before {
+  content: "Auto";
+  position: absolute;
+  width: 128px;
+  height: 128px;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+}
+.joystick.hide img {
+  filter: grayscale(1);
+  -webkit-filter: grayscale(1);
+}
+.joystick.hide::before {
+  content: "";
+  position: absolute;
+  width: 128px;
+  height: 128px;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+}
+.joystick.break img {
+  filter: grayscale(1);
+  -webkit-filter: grayscale(1);
+}
+.joystick.break::before {
+  content: "Break Release";
+  position: absolute;
+  width: 128px;
+  height: 128px;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+}
+.joystick img {
+  cursor: pointer;
+}
+.joystick #stick {
+  position: absolute;
+  left: 32px;
+  top: 31px;
+}
+.joystick .overlay {
+  position: absolute;
+  width: 128px;
+  height: 128px;
+}
+.joystick .overlay .joystickTop,
+.joystick .overlay .joystickBottom,
+.joystick .overlay .joystickLeft,
+.joystick .overlay .joystickRight {
+  position: absolute;
+}
+.joystick .overlay .joystickTop:active,
+.joystick .overlay .joystickBottom:active,
+.joystick .overlay .joystickLeft:active,
+.joystick .overlay .joystickRight:active {
+  filter: contrast(0.5);
+}
+.joystick .overlay .joystickTop {
+  transform: translate(19px, -2px);
+}
+.joystick .overlay .joystickRight {
+  transform: rotate(90deg) translate(44px, -65px);
+}
+.joystick .overlay .joystickBottom {
+  transform: rotate(178deg) translate(-18px, -90px);
+}
+.joystick .overlay .joystickLeft {
+  transform: rotate(-92deg) translate(-45px, -28px);
+}
